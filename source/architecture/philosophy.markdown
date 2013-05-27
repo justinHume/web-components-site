@@ -8,7 +8,9 @@ footer: true
 author: Justin Hume
 ---
 
-Readium Web Components is designed to make it easy to add EPUB 3.0 support to your web application. 
+The philosophy of the Readium Web Components project is that it should be simple to build EPUB 3 support into web applications:
 
-It should be easy to deploy, easy to use, and easy to license for open and commercial projects.  
-
+* Simple to embed EPUB publications in a web page.
+* Simple to build custom EPUB-centric web applications.
+* Simple to license for both personal and commercial projects. 
+* Simple to deploy and maintain.
