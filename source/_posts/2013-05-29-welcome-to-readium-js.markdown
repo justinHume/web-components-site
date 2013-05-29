@@ -9,7 +9,7 @@ author: <a href="http://github.com/justinHume">Justin Hume</a>
 
 Welcome to the new Readium.js reference site and blog!
 
-### Easy, open, web
+## Easy, open, web
 Readium.js is a BSD licensed open-source project that makes it simple to build EPUB 3 web applications, or to embed EPUB 3 publications in web applications. 
 
 <!--more-->
