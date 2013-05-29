@@ -14,7 +14,7 @@ The easiest way to get familiar with Readium Web Components is to use SimpleRWC.
 
 This module is included with a small web application that embeds SimpleRWC.js and wires a few controls, such as page-next and page-previous, to the SimpleRWC API. 
 
-SimpleRWC.js should help you get started using and understanding Readium Web Components. 
+SimpleRWC.js should help you get started using and understanding Readium.js. 
 
 #### Instructions for setting up the demo
 To use this demo, you need to have a web server. 

@@ -9,7 +9,7 @@ author: Justin Hume
 ---
 
 ## List of Modules
-This page describes the API for each javascript module in the Readium Web Components library. 
+This page describes the API for each javascript module in the Readium.js library. 
 
 A list - and example of use - is provided for the custom styles, events and methods of each module.
 
@@ -54,80 +54,80 @@ _Manage the loading, rendering and interaction with EPUB 3.0 content._
 * [epubLoaded]("")
 
 #### Methods
-* [new EpubReaderModule(readerBoundElement, epubSpineInfo, viewerSettings, packageDocumentDOM)](#reader-init)
-* [render()](#reader-render)
-* [showSpineItem(spineIndex)](#reader-show-spine-item)
-* [showPageByCFI(CFI)](#reader-show-page-by-cfi)
-* [showPageByElementId(spineIndex, hashFragmentId)]("")
-* [nextPage()]("")
-* [previousPage()]("")
-* [setFontSize(fontSize)]("")
-* [setMargin()]("")
-* [setTheme()]("")
-* [setSyntheticLayout(isSynthetic)]("")
-* [getNumberOfPages()]("")
-* [getCurrentPage()]("")
-* [on(eventName, callback, callbackContext)]("")
-* [off(eventName)]("")
-* [getViewerSettings()]("")
+* [EpubReaderModule](#reader-init)
+* [render](#reader-render)
+* [showSpineItem](#reader-show-spine-item)
+* [showPageByCFI](#reader-show-page-by-cfi)
+* [showPageByElementId](#reader-show-page-by-element-id)
+* [nextPage](#reader-next-page)
+* [previousPage](#reader-previous-page)
+* [setFontSize](#reader-set-font-size)
+* [setMargin](#reader-set-margin)
+* [setTheme](#reader-set-theme)
+* [setSyntheticLayout](#reader-set-synthetic-layout)
+* [getNumberOfPages](#reader-get-number-of-pages)
+* [getCurrentPage](#reader-get-current-page)
+* [on](#reader-on)
+* [off](#reader-off)
+* [getViewerSettings](#reader-get-viewer-settings)
 
 ***
 
-### [EPUB-Reflowable]("#epub-reflowable")
+### [EPUB-Reflowable](#reflowable-api)
 _Paginates a reflowable EPUB content document and provides an interface._
 
 #### Events
 * [contentDocumentLoaded]()
 
 #### Methods
-* [new EpubReflowableModule(spineObject, viewerSettingsObject, CFIAnnotations, bindings)]("")
-* [render()]("")
-* [nextPage()]("")
-* [previousPage()]("")
-* [showPageByHashFragment(hashFragmentId)]("")
-* [showPageByNumber(pageNumber)]("")
-* [showPageByCFI(CFI)]()
-* [onFirstPage()]()
-* [onLastPage()]()
-* [showPagesView()]()
-* [hidePagesView()]()
-* [numberOfPages()]()
-* [currentPage()]()
-* [setFontSize(fontSize)]()
-* [setMargin(margin)]()
-* [setTheme(theme)]()
-* [setSyntheticLayout(isSynthetic)]()
-* [on(eventName, callback, callbackContext)]()
-* [off(eventName)]()
+* [EpubReflowableModule](#reflowable-init)
+* [render](#reflowable-render)
+* [nextPage](#reflowable-next-page)
+* [previousPage](#reflowable-previous-page)
+* [showPageByHashFragment](#reflowable-show-page-by-hash-fragment)
+* [showPageByNumber](#reflowable-show-page-by-number)
+* [showPageByCFI](#reflowable-show-page-by-cfi)
+* [onFirstPage](#reflowable-on-first-page)
+* [onLastPage](#reflowable-on-last-page)
+* [showPagesView](#reflowable-show-pages-view)
+* [hidePagesView](#reflowable-hide-pages-view)
+* [numberOfPages](#reflowable-number-of-pages)
+* [currentPage](#reflowable-current-page)
+* [setFontSize](#reflowable-set-font-size)
+* [setMargin](#reflowable-set-margin)
+* [setTheme](#reflowable-set-theme)
+* [setSyntheticLayout](#reflowable-set-synthetic-layout)
+* [on](#reflowable-on)
+* [off](#reflowable-off)
 
 ***
 
-### [EPUB-Fixed]("#epub-fixed")
+### [EPUB-Fixed](#fixed-api)
 _Load and render a set of fixed layout pages, and provides an interface for them._
 
 #### Events
 * [contentDocumentLoaded]()
 
 #### Methods
-* [new EpubFixedModule(spineObjects, viewerSettingsObject)]()
-* [render()]()
-* [nextPage()]()
-* [previousPage()]()
-* [showPageByHashFragment(hashFragmentId)]()
-* [showPageByNumber(pageNumber)]()
-* [showPageByCFI(CFI)]()
-* [onFirstPage()]()
-* [onLastPage()]()
-* [showPagesView()]()
-* [hidePagesView()]()
-* [numberOfPages()]()
-* [currentPage()]()
-* [setFontSize(fontSize)]()
-* [setMargin(margin)]()
-* [setTheme(theme)]()
-* [setSyntheticLayout(isSynthetic)]()
-* [on(eventName, callback, callbackContext)]()
-* [off(eventName)]()
+* [EpubFixedModule](#fixed-init)
+* [render](#fixed-render)
+* [nextPage](#fixed-next-page)
+* [previousPage](#fixed-previous-page)
+* [showPageByHashFragment](#fixed-show-page-by-hash-fragment)
+* [showPageByNumber](#fixed-show-page-by-number)
+* [showPageByCFI](#fixed-show-page-by-cfi)
+* [onFirstPage](#fixed-on-first-page)
+* [onLastPage](#fixed-on-last-page)
+* [showPagesView](#fixed-show-pages-view)
+* [hidePagesView](#fixed-hide-pages-view)
+* [numberOfPages](#fixed-number-of-pages)
+* [currentPage](#fixed-current-page)
+* [setFontSize](#fixed-set-font-size)
+* [setMargin](#fixed-set-margin)
+* [setTheme](#fixed-set-theme)
+* [setSyntheticLayout](#fixed-set-synthetic-layout)
+* [on](#fixed-on)
+* [off](#fixed-off)
 
 ***
 
@@ -153,6 +153,10 @@ _De-reference and generate Canonical Fragement Identifiers (CFIs)._
 * [generateElementRangeComponent(rangeStartElement, rangeEndElement)]("")
 
 ***
+
+<!-- ==========================================================================================================
+        PARSER API DESCRIPTION
+     ========================================================================================================== -->
 
 <a id="parser-api"></a>
 ## Parser API
@@ -185,6 +189,10 @@ var packageDocumentObject = epubParser.parse();
 // Returns a javascript object representation of the package document
 
 {% endcodeblock %}
+
+<!-- ==========================================================================================================
+        EPUB API DESCRIPTION
+     ========================================================================================================== -->
 
 <a id="epub-api"></a>
 ## EPUB
@@ -427,6 +435,11 @@ var tocHref = theEpub.getToc();
 {% endcodeblock %}
 
 <a id="reader-api"></a>
+
+<!-- ==========================================================================================================
+        READER API DESCRIPTION
+     ========================================================================================================== -->
+
 ## EPUB Reader API
 
 <a id="reader-init"></a>
@@ -569,6 +582,7 @@ _EXPECTED API CHANGE_: The way themes are set will likely be changed to give dev
 {% codeblock .setTheme(theme) lang:javascript %}
 
     var themeName = "default"; // "default", "vancouver-theme", "desert-theme"
+    epubReader.setTheme(themeName);
 
 {% endcodeblock %}
 
@@ -657,50 +671,541 @@ The reader must preserve viewer settings state internally; this method returns t
 
 {% endcodeblock %}
 
+<!-- ==========================================================================================================
+        REFLOWABLE PAGES VIEW API DESCRIPTION
+     ========================================================================================================== -->
 
+<a id="reflowable-api"></a>
 ### Reflowable Pages View
 
-* [new EpubReflowableModule(spineObject, viewerSettingsObject, CFIAnnotations, bindings)]("")
-* [render()]("")
-* [nextPage()]("")
-* [previousPage()]("")
-* [showPageByHashFragment(hashFragmentId)]("")
-* [showPageByNumber(pageNumber)]("")
-* [showPageByCFI(CFI)]()
-* [onFirstPage()]()
-* [onLastPage()]()
-* [showPagesView()]()
-* [hidePagesView()]()
-* [numberOfPages()]()
-* [currentPage()]()
-* [setFontSize(fontSize)]()
-* [setMargin(margin)]()
-* [setTheme(theme)]()
-* [setSyntheticLayout(isSynthetic)]()
-* [on(eventName, callback, callbackContext)]()
-* [off(eventName)]()
+<a id="reflowable-init"></a>
+#### EpubReflowableModule
+Initialize the set of reflowable pages.
 
-### Fixed Pages View
+This is a stateful module. State is the _[content document]()_, _viewer settings_, and _[bindings]()_ for the content document. 
 
-* [new EpubFixedModule(spineObjects, viewerSettingsObject)]()
-* [render()]()
-* [nextPage()]()
-* [previousPage()]()
-* [showPageByHashFragment(hashFragmentId)]()
-* [showPageByNumber(pageNumber)]()
-* [showPageByCFI(CFI)]()
-* [onFirstPage()]()
-* [onLastPage()]()
-* [showPagesView()]()
-* [hidePagesView()]()
-* [numberOfPages()]()
-* [currentPage()]()
-* [setFontSize(fontSize)]()
-* [setMargin(margin)]()
-* [setTheme(theme)]()
-* [setSyntheticLayout(isSynthetic)]()
-* [on(eventName, callback, callbackContext)]()
-* [off(eventName)]()
+{% codeblock .EpubReflowableModule() lang:javascript %}
+
+    var contentDocumentInfo = {
+        contentDocumentURI : "epub_content/moby_dick/OPS/chapter_002.xhtml", // path to content document
+        title : "Title of the EPUB publication", 
+        firstPageIsOffset : false, // boolean
+        pageProgressionDirection : "ltr", // "ltr" or "rtl"
+        spineIndex : 1, // integer; zero-indexed
+        isFixedLayout : false // boolean
+    };
+
+    var viewerSettings = {
+        fontSize : 12, // integer; one-indexed
+        syntheticLayout : true, // boolean
+        currentMargin : 3, // integer; one-indexed
+        tocVisible : false, // boolean
+        currentTheme : "default" // "default", "vancouver-theme", "desert-theme"
+    };
+
+    this.view = new EpubReflowableModule(
+        contentDocumentInfo,
+        viewerSettings,
+        bindings
+    );
+
+{% endcodeblock %}
+
+<a id="reflowable-render"></a>
+#### render
+Paginate the [content document]().
+
+This method returns a DOM element that must be injected into the DOM for the rendering process to complete. This is because EPUB content is rendered in an iframe, which only fetches and loads once it's a part of the DOM.
+
+{% codeblock .render(goToLastPage, elementId) lang:javascript %}
+
+    var $domElementToAppendTo = $("#container-id"); // jQuery not required
+    var goToLastPage = false; // boolean
+    var elementIdToShow = undefined; // Either an ID or undefined
+    var pagesElement = reflowablePages.render(false, undefined);
+    // Returns a DOM element
+
+    // Inject the element in the DOM
+    $domElementToAppendTo.append(pagesElement);
+
+{% endcodeblock %}
+
+<a id="reflowable-next-page"></a>
+#### nextPage
+Show the next page(s). 
+
+{% codeblock .nextPage() lang:javascript %}
+
+    reflowablePages.nextPage();
+
+{% endcodeblock %}
+
+<a id="reflowable-previous-page"></a>
+#### previousPage
+Show the previous page(s).
+
+{% codeblock .previousPage() lang:javascript %}
+
+    reflowablePages.previousPage();
+
+{% endcodeblock %}
+
+<a id="reflowable-show-page-by-hash-fragment"></a>
+#### showPageByElementId
+Show the page that contains the element with the specified ID. 
+
+The spine index must also be supplied, as each spine itemref is likely an XHTML document, and the uniqueness of id's in the EPUB publication is not assured. 
+
+_EXPECTED API CHANGE_: This will be renamed to something like _showPageByElementId_.
+
+{% codeblock .showPageByHashFragment(hashFragmentId) lang:javascript %}
+
+    var elementId = "XML-id";
+    reflowablePages.showPageByHashFragment(elementId);
+
+{% endcodeblock %}
+
+<a id="reflowable-show-page-by-number"></a>
+#### showPageByNumber
+Show the specified page number.
+
+{% codeblock .showPageByNumber(pageNumber) lang:javascript %}
+
+    var pageNumberToShow = 1; // integer; one-indexed
+    reflowablePages.showPageByNumber(pageNumberToShow);
+
+{% endcodeblock %}
+
+<a id="reflowable-show-page-by-cfi"></a>
+#### showPageByCFI
+Show the page on which content indexed by a [CFI]() can be found. 
+
+{% codeblock .showPageByCFI(CFI) lang:javascript %}
+    
+    var CFI = "epubcfi(/2/6!/4/2/10)";
+    reflowablePages.showPageByCFI(CFI);
+
+{% endcodeblock %}
+
+<a id="reflowable-on-first-page"></a>
+#### onFirstPage
+Indicates if the set of pages is currently showing the first page. 
+
+{% codeblock .onFirstPage() lang:javascript %}
+
+    var onFirstPage = reflowablePages.onFirstPage();
+    // Returns a boolean
+
+{% endcodeblock %}
+
+<a id="reflowable-on-last-page"></a>
+#### onLastPage
+Indicates if the set of pages is currently showing the last page.
+
+{% codeblock .onLastPage() lang:javascript %}
+
+    var onLastPage = reflowablePages.onLastPage();
+    // Returns a boolean
+
+{% endcodeblock %}
+
+<a id="reflowable-show-pages-view"></a>
+#### showPagesView
+Show the set of pages. 
+
+{% codeblock .showPagesView() lang:javascript %}
+    
+    reflowablePages.showPagesView();
+
+{% endcodeblock %}
+
+<a id="reflowable-hide-pages-view"></a>
+#### hidePagesView
+Hide the set of pages.
+
+{% codeblock .hidePagesView() lang:javascript %}
+    
+    reflowablePages.hidePagesView();
+
+{% endcodeblock %}
+
+<a id="reflowable-number-of-pages"></a>
+#### numberOfPages
+Get the number of pages in the set.
+
+{% codeblock .numberOfPages() lang:javascript %}
+
+    var numberOfPages = reflowablePages.numberOfPages();
+    // Returns an integer; one-indexed
+
+{% endcodeblock %}
+
+<a id="reflowable-current-page"></a>
+#### currentPage
+Get the current page.
+
+{% codeblock .currentPage() lang:javascript %}
+
+    var currentPage = reflowablePages.currentPage();
+    // Returns the current page
+
+{% endcodeblock %}
+
+<a id="reflowable-set-font-size"></a>
+#### setFontSize
+Set the font size for text.
+
+{% codeblock .setFontSize(fontSize) lang:javascript %}
+
+    fontSize = 12; // integer; 1-indexed
+    reflowablePages.setFontSize(fontSize);
+
+{% endcodeblock %}
+
+<a id="reflowable-set-margin"></a>
+#### setMargin
+Set the margin for each page. 
+
+{% codeblock .setMargin(margin) lang:javascript %}
+
+    var margin = 4; // integer; zero-indexed
+    reflowablePages.setMargin(margin);
+
+{% endcodeblock %}
+
+<a id="reflowable-set-theme"></a>
+#### setTheme
+Set the theme for the XHTML content document. 
+
+_EXPECTED API CHANGE_: The way themes are set will likely be changed to give developers more flexibility over which elements are styled.
+
+{% codeblock .setTheme(theme) lang:javascript %}
+
+    var themeName = "default"; // "default", "vancouver-theme", "desert-theme"
+    reflowablePages.setTheme(themeName);
+
+{% endcodeblock %}
+
+<a id="reflowable-set-synthetic-layout"></a>
+#### setSyntheticLayout
+Set a synthetic layout (two pages), or a single-page layout. 
+
+{% codeblock .setSyntheticLayout(isSynthetic) lang:javascript %}
+
+    // Show a two page layout
+    reflowablePages.setSyntheticLayout(true);
+
+    // Show a single page layout 
+    reflowablePages.setSyntheticLayout(false);
+
+{% endcodeblock %}
+
+<a id="reflowable-on"></a>
+#### on
+Bind a callback to one of the [events]() fired by the reflowable object. The callback will be invoked whenever the event is triggered. 
+
+This method is delegating to the [backbone.js on(...)]() method, so the interface and semantics will conform closely. 
+
+{% codeblock on(eventName, callback, callbackContext) lang:javascript %} 
+
+    // Bind a callback to the "epubLoaded" event
+    reflowablePages.on("epubLoaded", function () {
+        console.log("the EPUB publication resources are now loaded and rendered");
+    }, this);
+
+{% endcodeblock %}
+
+<a id="reflowable-off"></a>
+#### off
+Remove all callbacks bound to the module object for the given event name. 
+
+This method is delegating to the [backbone.js of(...)]() method, so the interface and semantics will conform closely.
+
+{% codeblock .off(eventName) lang:javascript %}
+
+    reflowablePages.off("epubLoaded");
+
+{% endcodeblock %}
+
+<!-- ==========================================================================================================
+        FIXED PAGES VIEW API DESCRIPTION
+     ========================================================================================================== -->
+
+<a id="fixed-api"></a>
+## Fixed Pages View
+
+<a id="fixed-init"></a>
+#### EpubFixedModule
+
+Initialize a set of fixed pages.
+
+This is a stateful module. State is the _set of [fixed layout pages]()_ passed to the module, and the _viewer settings_;
+
+The spineObject is an array of objects that contain information about a [spine itemref](). The number of spine objects passed to the module can be anything greater than 1, within system/language limits.
+
+{% codeblock .EpubFixedModule(spineObjects, viewerSettingsObject) lang:javascript %}
+
+    var spineObjects = [
+        {
+            contentDocumentURI: "epub_content/page-blanche-20121022/EPUB/Content/cover.xhtml",
+            firstPageIsOffset: false,
+            fixedLayoutType: "xhtml",
+            isFixedLayout: true,
+            mediaType: "application/xhtml+xml",
+            pageProgressionDirection: "ltr",
+            pageSpread: "left",
+            spineIndex: 0,
+            title: "Page Blanche"
+        },
+        ...
+        {
+            contentDocumentURI: "epub_content/page-blanche-20121022/EPUB/Content/PageBlanche_Page_008.xhtml",
+            firstPageIsOffset: false,
+            fixedLayoutType: "xhtml",
+            isFixedLayout: true,
+            mediaType: "application/xhtml+xml",
+            pageProgressionDirection: "ltr",
+            pageSpread: "right",
+            spineIndex: 9,
+            title: "Page Blanche"
+        }
+    ];
+
+    var viewerSettings = {
+        fontSize : 12,
+        syntheticLayout : false,
+        currentMargin : 3,
+        tocVisible : false,
+        currentTheme : "default"
+    };
+
+    var fixedPages = new EpubFixedModule(
+        spineObjects,
+        viewerSettings
+    );
+
+{% endcodeblock %}
+
+<a id="fixed-render"></a>
+#### render
+
+Render and size the [fixed layout pages]().
+
+This method returns a DOM element that must be injected into the DOM for the rendering process to complete. This is because EPUB content is rendered in an iframe, which only fetches and loads once it's a part of the DOM.
+
+{% codeblock .render(goToLastPage, elementId) lang:javascript %}
+
+    var $domElementToAppendTo = $("#container-id"); // jQuery not required
+    var goToLastPage = false; // boolean
+    var elementIdToShow = undefined; // Either an ID or undefined
+    var pagesElement = fixedPages.render(false, undefined);
+    // Returns a DOM element
+
+    // Inject the element in the DOM
+    $domElementToAppendTo.append(pagesElement);
+
+{% endcodeblock %}
+
+<a id="fixed-next-page"></a>
+#### nextPage
+Show the next page(s). 
+
+{% codeblock .nextPage() lang:javascript %}
+
+    fixedPages.nextPage();
+
+{% endcodeblock %}
+
+<a id="fixed-previous-page"></a>
+#### previousPage
+Show the previous page(s).
+
+{% codeblock .previousPage() lang:javascript %}
+
+    fixedPages.previousPage();
+
+{% endcodeblock %}
+
+<a id="fixed-show-page-by-hash-fragment"></a>
+#### showPageByElementId
+Show the page that contains the element with the specified ID. 
+
+The spine index must also be supplied, as each spine itemref is likely an XHTML document, and the uniqueness of id's in the EPUB publication is not assured. 
+
+_EXPECTED API CHANGE_: This will be renamed to something like _showPageByElementId_.
+
+{% codeblock .showPageByHashFragment(hashFragmentId) lang:javascript %}
+
+    var elementId = "XML-id";
+    fixedPages.showPageByHashFragment(elementId);
+
+{% endcodeblock %}
+
+<a id="fixed-show-page-by-number"></a>
+#### showPageByNumber
+Show the specified page number.
+
+{% codeblock .showPageByNumber(pageNumber) lang:javascript %}
+
+    var pageNumberToShow = 1; // integer; one-indexed
+    fixedPages.showPageByNumber(pageNumberToShow);
+
+{% endcodeblock %}
+
+<a id="fixed-show-page-by-cfi"></a>
+#### showPageByCFI
+Show the page on which content indexed by a [CFI]() can be found. 
+
+{% codeblock .showPageByCFI(CFI) lang:javascript %}
+    
+    var CFI = "epubcfi(/2/6!/4/2/10)";
+    fixedPages.showPageByCFI(CFI);
+
+{% endcodeblock %}
+<a id="fixed-on-first-page"></a>
+#### onFirstPage
+Indicates if the set of pages is currently showing the first page. 
+
+{% codeblock .onFirstPage() lang:javascript %}
+
+    var onFirstPage = fixedPages.onFirstPage();
+    // Returns a boolean
+
+{% endcodeblock %}
+
+<a id="fixed-on-last-page"></a>
+#### onLastPage
+Indicates if the set of pages is currently showing the last page.
+
+{% codeblock .onLastPage() lang:javascript %}
+
+    var onLastPage = fixedPages.onLastPage();
+    // Returns a boolean
+
+{% endcodeblock %}
+
+<a id="fixed-show-pages-view"></a>
+#### showPagesView
+Show the set of pages. 
+
+{% codeblock .showPagesView() lang:javascript %}
+    
+    fixedPages.showPagesView();
+
+{% endcodeblock %}
+
+<a id="fixed-hide-pages-view"></a>
+#### hidePagesView
+Hide the set of pages.
+
+{% codeblock .hidePagesView() lang:javascript %}
+    
+    fixedPages.hidePagesView();
+
+{% endcodeblock %}
+
+<a id="fixed-number-of-pages"></a>
+#### numberOfPages
+Get the number of pages in the set.
+
+{% codeblock .numberOfPages() lang:javascript %}
+
+    var numberOfPages = fixedPages.numberOfPages();
+    // Returns an integer; one-indexed
+
+{% endcodeblock %}
+
+<a id="fixed-current-page"></a>
+#### currentPage
+Get the current page.
+
+{% codeblock .currentPage() lang:javascript %}
+
+    var currentPage = fixedPages.currentPage();
+    // Returns the current page
+
+{% endcodeblock %}
+
+<a id="fixed-set-font-size"></a>
+#### setFontSize
+Set the font size for text.
+
+{% codeblock .setFontSize(fontSize) lang:javascript %}
+
+    fontSize = 12; // integer; 1-indexed
+    fixedPages.setFontSize(fontSize);
+
+{% endcodeblock %}
+
+<a id="fixed-set-margin"></a>
+#### setMargin
+Set the margin for each page. 
+
+{% codeblock .setMargin(margin) lang:javascript %}
+
+    var margin = 4; // integer; zero-indexed
+    fixedPages.setMargin(margin);
+
+{% endcodeblock %}
+
+<a id="fixed-set-theme"></a>
+#### setTheme
+Set the theme for the XHTML content document. 
+
+_EXPECTED API CHANGE_: The way themes are set will likely be changed to give developers more flexibility over which elements are styled.
+
+{% codeblock .setTheme(theme) lang:javascript %}
+
+    var themeName = "default"; // "default", "vancouver-theme", "desert-theme"
+    fixedPages.setTheme(themeName);
+
+{% endcodeblock %}
+
+<a id="fixed-set-synthetic-layout"></a>
+#### setSyntheticLayout
+Set a synthetic layout (two pages), or a single-page layout. 
+
+{% codeblock .setSyntheticLayout(isSynthetic) lang:javascript %}
+
+    // Show a two page layout
+    fixedPages.setSyntheticLayout(true);
+
+    // Show a single page layout 
+    fixedPages.setSyntheticLayout(false);
+
+{% endcodeblock %}
+
+<a id="fixed-on"></a>
+#### on
+Bind a callback to one of the [events]() fired by the fixed object. The callback will be invoked whenever the event is triggered. 
+
+This method is delegating to the [backbone.js on(...)]() method, so the interface and semantics will conform closely. 
+
+{% codeblock on(eventName, callback, callbackContext) lang:javascript %} 
+
+    // Bind a callback to the "epubLoaded" event
+    fixedPages.on("epubLoaded", function () {
+        console.log("the EPUB publication resources are now loaded and rendered");
+    }, this);
+
+{% endcodeblock %}
+
+<a id="fixed-off"></a>
+#### off
+Remove all callbacks bound to the module object for the given event name. 
+
+This method is delegating to the [backbone.js of(...)]() method, so the interface and semantics will conform closely.
+
+{% codeblock .off(eventName) lang:javascript %}
+
+    fixedPages.off("epubLoaded");
+
+{% endcodeblock %}
+
+
+<!-- ==========================================================================================================
+        EPUB CFI API DESCRIPTION
+     ========================================================================================================== -->
 
 ### EPUB Canonical Fragment Identifiers
 

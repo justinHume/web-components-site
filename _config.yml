@@ -2,9 +2,9 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://justinHume.github.io/readium-web-components
-title: Readium Web Components
-subtitle: EPUB 3.0 on the web
+url: http://readium.github.io/Readium-Web-Components
+title: Readium.js
+subtitle: EPUB 3 on the web
 author: Justin Hume
 simple_search: http://google.com/search
 description:
