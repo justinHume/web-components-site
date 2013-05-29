@@ -15,7 +15,7 @@ If you have any questions, problems, suggestions, you can email me at justinh@ev
 <a id="simple-rwc-demo"></a>
 ## SimpleReadium.js & Demo application
 
-The easiest way to get familiar with Readium.js is to use [SimpleReadium.js](/Readium-Web-Components/get-started/download.html), a javascript module that wires together all the Readium.js modules in one object and exposes a reduced, simplified, API. 
+The easiest way to get familiar with Readium.js is to use [SimpleReadium.js](/Readium-Web-Components/get-started/download.html), a javascript module that wires together all the Readium.js modules in one object and exposes a reduced, simplified, [API](/Readium-Web-Components/get-started/api.html#simple-api). 
 
 The following demo application and SimpleReadium.js should help you get started using and understanding Readium.js.
 

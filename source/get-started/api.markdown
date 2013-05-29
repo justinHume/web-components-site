@@ -13,6 +13,22 @@ This page describes the API for each javascript module in the Readium.js library
 
 A list - and example of use - is provided for the custom styles, events and methods of each module.
 
+### [SimpleReadium](#simple-api)
+_A module that wires together all of Readium.js into one object and exposes a reduced, simplified, API._
+
+* [SimpleRWC](#simple-init)
+* [showSpineItem](#simple-show-spine-item)
+* [showPageByCFI](#simple-show-page-by-cfi)
+* [showPageByElementId](#simple-show-page-by-element-id)
+* [previousPage](#simple-previous-page)
+* [nextPage](#simple-next-page)
+* [setFontSize](#simple-set-font-size)
+* [setMargin](#simple-set-margin)
+* [setTheme](#simple-set-theme)
+* [setSyntheticLayout](#simple-set-synthetic-layout)
+* [setMargin](#simple-set-margin)
+* [setTheme](#simple-set-theme)
+
 *** 
 
 ### [EPUB-Parser](#parser-api)
@@ -74,7 +90,7 @@ _Manage the loading, rendering and interaction with EPUB 3.0 content._
 ***
 
 ### [EPUB-Reflowable](#reflowable-api)
-_Paginates a reflowable EPUB content document and provides an interface._
+_Paginates a reflowable EPUB [content document](http://www.idpf.org/epub/30/spec/epub30-contentdocs.html#sec-overview) and provides an interface._
 
 #### Events
 * [contentDocumentLoaded]()
@@ -131,28 +147,201 @@ _Load and render a set of fixed layout pages, and provides an interface for them
 
 ***
 
-### [EPUB-CFI]("#epub-cfi")
+### [EPUB-CFI](#cfi-api)
 _De-reference and generate Canonical Fragement Identifiers (CFIs)._
 
 #### Methods
-* [new EpubCFIModule()]("")
-* [getContentDocHref(CFI, packageDocument)]("")
-* [injectElement(CFI, contentDocument, elementToInject)]("")
-* [getTargetElement(CFI, contentDocument)]("")
-* [getTargetElementWithPartialCFI(contentDocumentCFI, contentDocument)]("")
-* [getTextTerminusInfoWithPartialCFI(contentDocumentCFI, contentDocument)]("")
-* [generateCharacterOffsetCFIComponent(startTextNode, charOffset)]("")
-* [generateElementCFIComponent(startElement)]("")
-* [generatePackageDocumentCFIComponent(contentDocumentName, packageDocument)]("")
-* [generatePackageDocumentCFIComponentWithSpineIndex(spineIndex, packageDocument)]("")
-* [generateCompleteCFI(packageDocumentCFIComponent, contentDocumentCFIComponent)]("")
-* [injectElementAtOffset($textNodeList, textOffset, elementToInject)]("")
-* [injectRangeElements(rangeCFI, contentDocument, startElementToInject, endElementToInject)]("")
-* [getRangeTargetElements(rangeCFI, contentDocument)]("")
-* [generateCharOffsetRangeComponent(rangeStartElement, startOffset, rangeEndElement, endOffset)]("")
-* [generateElementRangeComponent(rangeStartElement, rangeEndElement)]("")
+* [new EpubCFIModule()](#epub-cfi)
+* [getContentDocHref(CFI, packageDocument)](#epub-cfi)
+* [injectElement(CFI, contentDocument, elementToInject)](#epub-cfi)
+* [getTargetElement(CFI, contentDocument)](#epub-cfi)
+* [getTargetElementWithPartialCFI(contentDocumentCFI, contentDocument)](#epub-cfi)
+* [getTextTerminusInfoWithPartialCFI(contentDocumentCFI, contentDocument)](#epub-cfi)
+* [generateCharacterOffsetCFIComponent(startTextNode, charOffset)](#epub-cfi)
+* [generateElementCFIComponent(startElement)](#epub-cfi)
+* [generatePackageDocumentCFIComponent(contentDocumentName, packageDocument)](#epub-cfi)
+* [generatePackageDocumentCFIComponentWithSpineIndex(spineIndex, packageDocument)](#epub-cfi)
+* [generateCompleteCFI(packageDocumentCFIComponent, contentDocumentCFIComponent)](#epub-cfi)
+* [injectElementAtOffset($textNodeList, textOffset, elementToInject)](#epub-cfi)
+* [injectRangeElements(rangeCFI, contentDocument, startElementToInject, endElementToInject)](#epub-cfi)
+* [getRangeTargetElements(rangeCFI, contentDocument)](#epub-cfi)
+* [generateCharOffsetRangeComponent(rangeStartElement, startOffset, rangeEndElement, endOffset)](#epub-cfi)
+* [generateElementRangeComponent(rangeStartElement, rangeEndElement)](#epub-cfi)
 
 ***
+
+<!-- ==========================================================================================================
+        SIMPLEREADIUM API DESCRIPTION
+     ========================================================================================================== -->
+
+<a id="simple-api"></a>
+## SimpleReadium.js
+
+<a id="simple-init"></a>
+#### SimpleRWC
+Instantiate a new SimpleReadium object. Use a constructor method invocation. 
+
+SimpleReadium requires a DOM element to bind EPUB content to, a url to the EPUB publication [package document](http://www.idpf.org/epub/30/spec/epub30-publications.html#sec-package-def), a viewer settings object, the package document XML, and a render strategy. 
+
+This is a stateful module. State is the set of arguments, above. 
+
+The element to bind must be given a fixed height, for the moment.
+
+{% codeblock new EpubReaderModule(readerBoundElement, epubSpineInfo, viewerSettings, packageDocumentDOM) lang:javascript %}
+
+    var elementToBindTo = $("#element-id")[0]; // A DOM element; jquery is not required
+    var viewerSettings = {
+            fontSize : 12, // integer
+            syntheticLayout : false, // boolean
+            currentMargin : 3, // integer
+            tocVisible : false, // boolean
+            currentTheme : "default" // "default", "vancouver-theme", "desert-theme"
+        };
+    var packageDocumentURL = "path/to/package/package.opf";
+    var packageDocumentXML = "<package>...</package>";
+    var renderStrategy = "lazy"; // "lazy" or "eager"
+
+    simpleReadium = new SimpleRWC(
+        elementToBindTo, viewerSettings, packageDocumentURL, packageDocumentXML, renderStrategy
+    );
+
+{% endcodeblock %} 
+
+<a id="simple-show-spine-item"></a>
+#### showSpineItem
+Show EPUB content using its index in the spine.
+
+A callback must be supplied, as the content referenced by the spine index may not have been loaded by the browser - this depends on the [render strategy]().
+
+{% codeblock showSpineItem(spineIndex) lang:javascript %}
+
+    var spineIndexToShow = 0; // integer; zero-indexed
+    var callback = function () {
+        console.log("Spine index shown: " + spineIndexToShow);
+    };
+    var callbackContext = this;
+    simpleReadium.showSpineItem(spineIndexToShow, callback, callbackContext);
+
+{% endcodeblock %}
+
+<a id="simple-show-page-by-cfi"></a>
+#### showPageByCFI
+Show the page on which content indexed by a [CFI](http://www.idpf.org/epub/linking/cfi/#sec-epubcfi-def) can be found. 
+
+A callback must be supplied, as the content referenced by the CFI may not have been loaded by the browser - this depends on the [render strategy]().
+
+{% codeblock showPageByCFI(CFI) lang:javascript %}
+    
+    var CFI = "epubcfi(/2/6!/4/2/10)";
+    var callback = function () {
+        console.log("Spine index shown: " + spineIndexToShow);
+    };
+    var callbackContext = this;
+    simpleReadium.showPageByCFI(CFI, callback, callbackContext);
+
+{% endcodeblock %}
+
+<a id="simple-show-page-by-element-id"></a>
+#### showPageByElementId
+Show the page that contains the element with the specified ID. 
+
+The spine index must also be supplied, as each [spine itemref](http://www.idpf.org/epub/30/spec/epub30-publications.html#sec-itemref-elem) is likely an XHTML document, and the uniqueness of id's in the entire EPUB publication is not assured. 
+
+A callback must be supplied, as the content referenced by the spine index may not have been loaded by the browser - this depends on the [render strategy]().
+
+{% codeblock showPageByElementId(spineIndex, hashFragmentId) lang:javascript %}
+
+    var spineIndexThatContainsTheId = 0; // integer; zero-indexed
+    var elementId = "XML-id";
+    var callback = function () {
+        console.log("Spine index shown: " + spineIndexToShow);
+    };
+    var callbackContext = this;
+    simpleReadium.showPageByElementId(spineIndexThatContainsTheId, elementId, callback, callbackContext);
+
+{% endcodeblock %}
+
+<a id="simple-next-page"></a>
+#### nextPage
+Show the next page(s) in the EPUB publication. 
+
+A callback must be supplied, as the next set of content may not have been loaded by the browser - this depends on the [render strategy]().
+
+{% codeblock .nextPage() lang:javascript %}
+
+    var callback = function () {
+        console.log("navigated to next page");
+    };
+    var callbackContext = this;
+    simpleReadium.nextPage(callback, callbackContext);
+
+{% endcodeblock %}
+
+<a id="simple-previous-page"></a>
+#### previousPage
+Show the previous page(s) in the EPUB publication.
+
+A callback must be supplied, as the previous set of content may not have been loaded by the browser - this depends on the [render strategy]().
+
+{% codeblock .previousPage() lang:javascript %}
+
+    var callback = function () {
+        console.log("navigated to previous page");
+    };
+    var callbackContext = this;
+    simpleReadium.previousPage(callback, callbackContext);
+
+{% endcodeblock %}
+
+<a id="simple-set-font-size"></a>
+#### setFontSize
+Set the font size for text.
+
+{% codeblock .setFontSize(fontSize) lang:javascript %}
+
+    fontSize = 12; // integer; 1-indexed
+    simpleReadium.setFontSize(fontSize);
+
+{% endcodeblock %}
+
+<a id="simple-set-margin"></a>
+#### setMargin
+Set the margin for each page. 
+
+{% codeblock .setMargin(margin) lang:javascript %}
+
+    var margin = 4; // integer; zero-indexed
+    simpleReadium.setMargin(margin);
+
+{% endcodeblock %}
+
+<a id="simple-set-theme"></a>
+#### setTheme
+Set the theme for the XHTML [content document](http://www.idpf.org/epub/30/spec/epub30-contentdocs.html#sec-overview). 
+
+_EXPECTED API CHANGE_: The way themes are set will likely be changed to give developers more flexibility over which elements are styled.
+
+{% codeblock .setTheme(theme) lang:javascript %}
+
+    var themeName = "default"; // "default", "vancouver-theme", "desert-theme"
+    simpleReadium.setTheme(themeName);
+
+{% endcodeblock %}
+
+<a id="simple-set-synthetic-layout"></a>
+#### setSyntheticLayout
+Set SimpleReadium to display a synthetic layout (two pages), or a single-page layout. 
+
+{% codeblock .setSyntheticLayout(isSynthetic) lang:javascript %}
+
+    // Show a two page layout
+    simpleReadium.setSyntheticLayout(true);
+
+    // Show a single page layout 
+    simpleReadium.setSyntheticLayout(false);
+
+{% endcodeblock %}
+
 
 <!-- ==========================================================================================================
         PARSER API DESCRIPTION
@@ -216,7 +405,7 @@ var theEpub = new EpubModule(packageDocumentObject, packageDocumentXML);
 
 <a id="epub-getSpineInfo"></a>
 #### getSpineInfo
-Get the spine info object. The spine info object contains three arrays: An _array of each [itemref]()_ in the [spine](), an _array of [bindings]()_.
+Get the spine info object. The spine info object contains three arrays: An _array of each [itemref](http://www.idpf.org/epub/30/spec/epub30-publications.html#sec-itemref-elem)_ in the [spine](http://www.idpf.org/epub/30/spec/epub30-publications.html#sec-spine-elem), an _array of [bindings](http://www.idpf.org/epub/30/spec/epub30-publications.html#sec-bindings-elem)_.
 
 {% codeblock .getSpineInfo() lang:javascript %}
 
@@ -230,10 +419,10 @@ var spineInfo = theEpub.getSpineInfo();
 
 <a id="epub-isFixedLayout"></a>
 #### isFixedLayout
-Indicates if the _entire_ EPUB is fixed layout. 
+Indicates if the _entire_ EPUB is [fixed layout](http://www.idpf.org/epub/fxl/#overview). 
 
-This will only return true if the [fixed layout meta property]() is set. If the EPUB
-is mixed (contains both reflowable and fixed layout content documents), or entirely reflowable, this will return false. 
+This will only return true if the [fixed layout meta properties](http://www.idpf.org/epub/fxl/#property-defs) are set. If the EPUB
+is mixed (contains both reflowable and fixed layout [content documents](http://www.idpf.org/epub/30/spec/epub30-contentdocs.html#sec-overview)), or entirely reflowable, this will return false. 
 
 {% codeblock %}
 
@@ -244,7 +433,7 @@ var isFXL = theEpub.isFixedLayout();
 
 <a id="epub-getManifestItemById"></a>
 #### getManifestItemById
-Get a [manifest item]() object using it's XML id. 
+Get a [manifest item](http://www.idpf.org/epub/30/spec/epub30-publications.html#sec-item-elem) object using it's XML id. 
 
 {% codeblock .getManifestItemById(id) lang:javascript %}
 
@@ -262,7 +451,7 @@ var manifestItemObject = theEpub.getManifestItemById(id)
 
 <a id="epub-getManifestItemByIdref"></a>
 #### getManifestItemByIdref
-Get a [manifest item]() object by using the [spine itemref idref]() that refers to it.
+Get a [manifest item](http://www.idpf.org/epub/30/spec/epub30-publications.html#sec-item-elem) object by using the [spine itemref idref](http://www.idpf.org/epub/30/spec/epub30-publications.html#sec-itemref-elem) that refers to it.
 
 {% codeblock .getManifestItemByIdref(idref) lang:javascript %}
 
@@ -280,7 +469,7 @@ var manifestItemObject = theEpub.getManifestItemByIdref(idref)
 
 <a id="epub-getSpineItemByIdref"></a>
 #### getSpineItemByIdref
-Get an [itemref]() object by using the itemref's idref. 
+Get an [itemref](http://www.idpf.org/epub/30/spec/epub30-publications.html#sec-itemref-elem) object by using the itemref's idref. 
 
 _EXPECTED API CHANGE_: This method will likely be renamed to getSpineItem___ref___ByIdref.
 
@@ -299,7 +488,7 @@ var spineItemrefObject = theEpub.getSpineItemByIdref(idref)
 
 <a id="epub-getSpineItemByIndex"></a>
 #### getSpineItemByIndex
-Get an [itemref]() object by using the itemref's index in the package document [spine](). 
+Get an [itemref](http://www.idpf.org/epub/30/spec/epub30-publications.html#sec-itemref-elem) object by using the itemref's index in the package document [spine](http://www.idpf.org/epub/30/spec/epub30-publications.html#sec-spine-elem). 
 
 _EXPECTED API CHANGE_: This method will likely be renamed to getSpineItem___ref___ByIndex.
 
@@ -318,7 +507,7 @@ var spineItemrefObject = theEpub.getSpineItemByIndex(spineIndex)
 
 <a id="epub-getSpineIndexByHref"></a>
 #### getSpineIndexByHref
-Get the spine index of the [itemref]() using it's associated manifest [item]() href.
+Get the spine index of the [itemref](http://www.idpf.org/epub/30/spec/epub30-publications.html#sec-itemref-elem) using it's associated manifest [item](http://www.idpf.org/epub/30/spec/epub30-publications.html#sec-item-elem) href.
 
 {% codeblock .getSpineIndexByHref(manifestItemHref) %}
     
@@ -330,7 +519,7 @@ Get the spine index of the [itemref]() using it's associated manifest [item]() h
 
 <a id="epub-spineLength"></a>
 #### spineLength
-Get the number of [itemrefs]() in the [spine]().
+Get the number of [itemrefs](http://www.idpf.org/epub/30/spec/epub30-publications.html#sec-itemref-elem) in the [spine](http://www.idpf.org/epub/30/spec/epub30-publications.html#sec-spine-elem).
 
 _EXPECTED API CHANGE_: This method will be renamed to something like _getNumberOfItemrefs_.
 
@@ -343,7 +532,7 @@ var numSpineItemrefs = theEpub.spineLength();
 
 <a id="epub-getNextLinearSpinePosition"></a>
 #### getNextLinearSpinePosition
-Get the index in the spine of the next [primary]() spine itemref.
+Get the index in the spine of the next [primary](http://www.idpf.org/epub/30/spec/epub30-publications.html#attrdef-itemref-linear) spine itemref.
 
 _EXPECTED API CHANGE_: This method will be renamed to something like _getNextPrimarySpineIndex_. This method may also be changed to actually return the itemref object. 
 
@@ -357,7 +546,7 @@ var nextPrimarySpineIndex = theEpub.getNextLinearSpinePosition(startSpineIndex);
 
 <a id="epub-getPrevLinearSpinePosition"></a>
 #### getPrevLinearSpinePosition
-Get the index in the spine of the previous [primary]() spine itemref.
+Get the index in the spine of the previous [primary](http://www.idpf.org/epub/30/spec/epub30-publications.html#attrdef-itemref-linear) spine itemref.
 
 _EXPECTED API CHANGE_: This method will be renamed to something like _getPreviousPrimarySpineIndex_. This method may also be changed to actually return the itemref object. 
 
@@ -371,7 +560,7 @@ var nextPrimarySpineIndex = theEpub.getPrevLinearSpinePosition(startSpineIndex);
 
 <a id="epub-hasNextSection"></a>
 #### hasNextSection
-Indicates if the EPUB has another [primary]() itemref.
+Indicates if the EPUB has another [primary](http://www.idpf.org/epub/30/spec/epub30-publications.html#attrdef-itemref-linear) itemref.
 
 _EXPECTED API CHANGE_: This method will likely be renamed to _hasNextItemref_.
 
@@ -385,7 +574,7 @@ var hasNextItemref = theEpub.hasNextSection(startSpineIndex);
 
 <a id="epub-hasPrevSection"></a>
 #### hasPrevSection
-Indicates if the EPUB has a previous [primary]() itemref.
+Indicates if the EPUB has a previous [primary](http://www.idpf.org/epub/30/spec/epub30-publications.html#attrdef-itemref-linear) itemref.
 
 _EXPECTED API CHANGE_: This method will likely be renamed to _hasPreviousItemref_.
 
@@ -399,7 +588,7 @@ var hasNextItemref = theEpub.hasPrevSection(startSpineIndex);
 
 <a id="epub-pageProgressionDirection"></a>
 #### pageProgressionDirection
-Gets the [page progression direction]() of the EPUB.
+Gets the [page progression direction](http://www.idpf.org/epub/30/spec/epub30-publications.html#attrdef-spine-page-progression-direction) of the EPUB.
 
 _EXPECTED API CHANGE_: This method will be renamed to something like _getPageProgressionDirection_.
 
@@ -423,7 +612,7 @@ var packageDocumentDOM = theEpub.getPackageDocumentDOM();
 
 <a id="epub-getToc"></a>
 #### getToc
-Gets the URL of the [table of contents]() manifest [item]().
+Gets the URL of the [table of contents](http://www.idpf.org/epub/30/spec/epub30-contentdocs.html#sec-xhtml-nav) manifest [item](http://www.idpf.org/epub/30/spec/epub30-publications.html#sec-item-elem).
 
 _EXPECTED API CHANGE_: This method will be renamed to something like _getTocHref_.
 
@@ -446,7 +635,7 @@ var tocHref = theEpub.getToc();
 #### EpubReaderModule
 Instantiate a new reader module. Use a constructor method invocation. 
 
-The reader requires a DOM element to bind EPUB content to, the EPUB publication [spine info]() object, a viewer settings object, and a [DOM representation]() of the package document.
+The reader requires a DOM element to bind EPUB content to, the EPUB publication [spine info]() object, a viewer settings object, and a [DOM representation](#getPackageDocumentDOM) of the package document.
 
 This is a stateful module. State is the _DOM element to bind to_, the epub resources referenced by the _epub spine info_ object, and _viewer settings_. 
 
@@ -477,18 +666,18 @@ This is a stateful module. State is the _DOM element to bind to_, the epub resou
 
 <a id="reader-render"></a>
 #### render
-Load and render EPUB publication resources. When render() is called, RWC will inject DOM elements as children of the [binding element]() passed on initialization. 
+Load and render EPUB publication resources. When render() is called, RWC will inject DOM elements as children of the [binding element](http://www.idpf.org/epub/30/spec/epub30-publications.html#sec-bindings-elem) passed on initialization. 
 
-By default, all EPUB resources will be hidden. A [show]() method must be called to display a part of the EPUB publication.
+By default, all EPUB resources will be hidden. A show method must be called to display a part of the EPUB publication.
 
-The EPUB-Reader module will trigger an "epubLoaded" event when all the resources of the EPUB are loaded. Use the [on]() method to handle the event. 
+The EPUB-Reader module will trigger an "epubLoaded" event when all the resources of the EPUB are loaded. Use the [on](#reader-on) method to handle the event. 
 
 _EXPECTED API CHANGE_: Loading and rendering settings, eager vs lazy loading
 
 {% codeblock .render() lang:javascript %}
 
     epubReader.on("epubLoaded", function () {
-        epubReader.showSpineItem(0);
+        epubReader.showSpineItem(0, function () { console.log("showed first page"); }, this);
     }, this);
 
     epubReader.render();
@@ -499,21 +688,33 @@ _EXPECTED API CHANGE_: Loading and rendering settings, eager vs lazy loading
 #### showSpineItem
 Show EPUB content using it's index in the spine.
 
+A callback must be supplied, as the content referenced by the spine index may not have been loaded by the browser - this depends on the [render strategy]().
+
 {% codeblock showSpineItem(spineIndex) lang:javascript %}
 
     var spineIndexToShow = 0; // integer; zero-indexed
-    epubReader.showSpineItem(spineIndexToShow);
+    var callback = function () {
+        console.log("Showed spine index: " + spineIndexToShow);
+    };
+    var callbackContext = this;
+    epubReader.showSpineItem(spineIndexToShow, callback, callbackContext);
 
 {% endcodeblock %}
 
 <a id="reader-show-page-by-cfi"></a>
 #### showPageByCFI
-Show the page on which content indexed by a [CFI]() can be found. 
+Show the page on which content indexed by a [CFI](http://www.idpf.org/epub/linking/cfi/#sec-epubcfi-def) can be found. 
+
+A callback must be supplied, as the content referenced by the CFI may not have been loaded by the browser - this depends on the [render strategy]().
 
 {% codeblock showPageByCFI(CFI) lang:javascript %}
     
     var CFI = "epubcfi(/2/6!/4/2/10)";
-    epubReader.showPageByCFI(CFI);
+    var callback = function () {
+        console.log("Showed page by CFI");
+    };
+    var callbackContext = this;
+    epubReader.showPageByCFI(CFI, callback, callbackContext);
 
 {% endcodeblock %}
 
@@ -523,11 +724,17 @@ Show the page that contains the element with the specified ID.
 
 The spine index must also be supplied, as each spine itemref is likely an XHTML document, and the uniqueness of id's in the EPUB publication is not assured. 
 
+A callback must be supplied, as the content referenced by the spine index may not have been loaded by the browser - this depends on the [render strategy]().
+
 {% codeblock showPageByElementId(spineIndex, hashFragmentId) lang:javascript %}
 
     var spineIndexThatContainsTheId = 0; // integer; zero-indexed
     var elementId = "XML-id";
-    epubReader.showPageByElementId(spineIndexThatContainsTheId, elementId);
+    var callback = function () {
+        console.log("Showed element ID");
+    };
+    var callbackContext = this;
+    epubReader.showPageByElementId(spineIndexThatContainsTheId, elementId, callback, callbackContext);
 
 {% endcodeblock %}
 
@@ -535,9 +742,15 @@ The spine index must also be supplied, as each spine itemref is likely an XHTML 
 #### nextPage
 Show the next page(s) in the EPUB publication. 
 
+A callback must be supplied, as the next set of content may not have been loaded by the browser - this depends on the [render strategy]().
+
 {% codeblock .nextPage() lang:javascript %}
 
-    epubReader.nextPage();
+    var callback = function () {
+        console.log("navigated to next page");
+    };
+    var callbackContext = this;
+    epubReader.nextPage(callback, callbackContext);
 
 {% endcodeblock %}
 
@@ -545,9 +758,15 @@ Show the next page(s) in the EPUB publication.
 #### previousPage
 Show the previous page(s) in the EPUB publication.
 
+A callback must be supplied, as the previous set of content may not have been loaded by the browser - this depends on the [render strategy]().
+
 {% codeblock .previousPage() lang:javascript %}
 
-    epubReader.previousPage();
+    var callback = function () {
+        console.log("navigated to previous page");
+    };
+    var callbackContext = this;
+    epubReader.previousPage(callback, callbackContext);
 
 {% endcodeblock %}
 
@@ -575,7 +794,7 @@ Set the margin for each page.
 
 <a id="reader-set-theme"></a>
 #### setTheme
-Set the theme for the XHTML content document. 
+Set the theme for the XHTML [content document](http://www.idpf.org/epub/30/spec/epub30-contentdocs.html#sec-overview). 
 
 _EXPECTED API CHANGE_: The way themes are set will likely be changed to give developers more flexibility over which elements are styled. 
 
@@ -629,7 +848,7 @@ _EXPECTED API CHANGE_: This method is a candidate for removal. I don't really th
 #### on
 Bind a callback to one of the [events]() fired by the reader module. The callback will be invoked whenever the event is triggered. 
 
-This method is delegating to the [backbone.js on(...)]() method, so the interface and semantics will conform closely. 
+This method is delegating to the [backbone.js on(...)](http://backbonejs.org/#Events-on) method, so the interface and semantics will conform closely. 
 
 {% codeblock on(eventName, callback, callbackContext) lang:javascript %} 
 
@@ -644,7 +863,7 @@ This method is delegating to the [backbone.js on(...)]() method, so the interfac
 #### off
 Remove all callbacks bound to the module object for the given event name. 
 
-This method is delegating to the [backbone.js of(...)]() method, so the interface and semantics will conform closely.
+This method is delegating to the [backbone.js off(...)](http://backbonejs.org/#Events-off) method, so the interface and semantics will conform closely.
 
 {% codeblock .off(eventName) lang:javascript %}
 
@@ -676,13 +895,13 @@ The reader must preserve viewer settings state internally; this method returns t
      ========================================================================================================== -->
 
 <a id="reflowable-api"></a>
-### Reflowable Pages View
+## Reflowable Pages View
 
 <a id="reflowable-init"></a>
 #### EpubReflowableModule
 Initialize the set of reflowable pages.
 
-This is a stateful module. State is the _[content document]()_, _viewer settings_, and _[bindings]()_ for the content document. 
+This is a stateful module. State is the _[content document](http://www.idpf.org/epub/30/spec/epub30-contentdocs.html#sec-overview)_, _viewer settings_, and _[bindings](http://www.idpf.org/epub/30/spec/epub30-publications.html#sec-bindings-elem)_ for the content document. 
 
 {% codeblock .EpubReflowableModule() lang:javascript %}
 
@@ -713,7 +932,7 @@ This is a stateful module. State is the _[content document]()_, _viewer settings
 
 <a id="reflowable-render"></a>
 #### render
-Paginate the [content document]().
+Paginate the [content document](http://www.idpf.org/epub/30/spec/epub30-contentdocs.html#sec-overview).
 
 This method returns a DOM element that must be injected into the DOM for the rendering process to complete. This is because EPUB content is rendered in an iframe, which only fetches and loads once it's a part of the DOM.
 
@@ -778,7 +997,7 @@ Show the specified page number.
 
 <a id="reflowable-show-page-by-cfi"></a>
 #### showPageByCFI
-Show the page on which content indexed by a [CFI]() can be found. 
+Show the page on which content indexed by a [CFI](http://www.idpf.org/epub/linking/cfi/#sec-epubcfi-def) can be found. 
 
 {% codeblock .showPageByCFI(CFI) lang:javascript %}
     
@@ -875,7 +1094,7 @@ Set the margin for each page.
 
 <a id="reflowable-set-theme"></a>
 #### setTheme
-Set the theme for the XHTML content document. 
+Set the theme for the XHTML [content document](http://www.idpf.org/epub/30/spec/epub30-contentdocs.html#sec-overview). 
 
 _EXPECTED API CHANGE_: The way themes are set will likely be changed to give developers more flexibility over which elements are styled.
 
@@ -904,7 +1123,7 @@ Set a synthetic layout (two pages), or a single-page layout.
 #### on
 Bind a callback to one of the [events]() fired by the reflowable object. The callback will be invoked whenever the event is triggered. 
 
-This method is delegating to the [backbone.js on(...)]() method, so the interface and semantics will conform closely. 
+This method is delegating to the [backbone.js on(...)](http://backbonejs.org/#Events-on) method, so the interface and semantics will conform closely. 
 
 {% codeblock on(eventName, callback, callbackContext) lang:javascript %} 
 
@@ -919,7 +1138,7 @@ This method is delegating to the [backbone.js on(...)]() method, so the interfac
 #### off
 Remove all callbacks bound to the module object for the given event name. 
 
-This method is delegating to the [backbone.js of(...)]() method, so the interface and semantics will conform closely.
+This method is delegating to the [backbone.js off(...)](http://backbonejs.org/#Events-off) method, so the interface and semantics will conform closely.
 
 {% codeblock .off(eventName) lang:javascript %}
 
@@ -939,9 +1158,9 @@ This method is delegating to the [backbone.js of(...)]() method, so the interfac
 
 Initialize a set of fixed pages.
 
-This is a stateful module. State is the _set of [fixed layout pages]()_ passed to the module, and the _viewer settings_;
+This is a stateful module. State is the _set of [fixed layout pages](http://www.idpf.org/epub/fxl/#overview)_ passed to the module, and the _viewer settings_;
 
-The spineObject is an array of objects that contain information about a [spine itemref](). The number of spine objects passed to the module can be anything greater than 1, within system/language limits.
+The spineObject is an array of objects that contain information about a [spine itemref](http://www.idpf.org/epub/30/spec/epub30-publications.html#sec-itemref-elem). The number of spine objects passed to the module can be anything greater than 1, within system/language limits.
 
 {% codeblock .EpubFixedModule(spineObjects, viewerSettingsObject) lang:javascript %}
 
@@ -989,7 +1208,7 @@ The spineObject is an array of objects that contain information about a [spine i
 <a id="fixed-render"></a>
 #### render
 
-Render and size the [fixed layout pages]().
+Render and size the [fixed layout pages](http://www.idpf.org/epub/fxl/#overview).
 
 This method returns a DOM element that must be injected into the DOM for the rendering process to complete. This is because EPUB content is rendered in an iframe, which only fetches and loads once it's a part of the DOM.
 
@@ -1054,7 +1273,7 @@ Show the specified page number.
 
 <a id="fixed-show-page-by-cfi"></a>
 #### showPageByCFI
-Show the page on which content indexed by a [CFI]() can be found. 
+Show the page on which content indexed by a [CFI](http://www.idpf.org/epub/linking/cfi/#sec-epubcfi-def) can be found. 
 
 {% codeblock .showPageByCFI(CFI) lang:javascript %}
     
@@ -1150,7 +1369,7 @@ Set the margin for each page.
 
 <a id="fixed-set-theme"></a>
 #### setTheme
-Set the theme for the XHTML content document. 
+Set the theme for the XHTML [content document](http://www.idpf.org/epub/30/spec/epub30-contentdocs.html#sec-overview). 
 
 _EXPECTED API CHANGE_: The way themes are set will likely be changed to give developers more flexibility over which elements are styled.
 
@@ -1179,7 +1398,7 @@ Set a synthetic layout (two pages), or a single-page layout.
 #### on
 Bind a callback to one of the [events]() fired by the fixed object. The callback will be invoked whenever the event is triggered. 
 
-This method is delegating to the [backbone.js on(...)]() method, so the interface and semantics will conform closely. 
+This method is delegating to the [backbone.js on(...)](http://backbonejs.org/#Events-on) method, so the interface and semantics will conform closely. 
 
 {% codeblock on(eventName, callback, callbackContext) lang:javascript %} 
 
@@ -1194,7 +1413,7 @@ This method is delegating to the [backbone.js on(...)]() method, so the interfac
 #### off
 Remove all callbacks bound to the module object for the given event name. 
 
-This method is delegating to the [backbone.js of(...)]() method, so the interface and semantics will conform closely.
+This method is delegating to the [backbone.js off(...)](http://backbonejs.org/#Events-off) method, so the interface and semantics will conform closely.
 
 {% codeblock .off(eventName) lang:javascript %}
 
@@ -1207,5 +1426,10 @@ This method is delegating to the [backbone.js of(...)]() method, so the interfac
         EPUB CFI API DESCRIPTION
      ========================================================================================================== -->
 
-### EPUB Canonical Fragment Identifiers
+<a id="cfi-api"></a>
+## EPUB Canonical Fragment Identifiers
+
+*Coming soon*
+
+This module exists, but the API naming is very ... utilitarian. The methods need to be renamed, after which they'll be put on here.
 
