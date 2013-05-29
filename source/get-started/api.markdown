@@ -5,7 +5,7 @@ date: 2013-05-22 15:50
 comments: true
 sharing: true
 footer: true
-author: Justin Hume
+author: <a href="http://github.com/justinHume">Justin Hume</a>
 ---
 
 ## List of Modules

@@ -5,5 +5,7 @@ date: 2013-05-22 15:07
 comments: true
 sharing: true
 footer: true
-author: Justin Hume
+author: <a href="http://github.com/justinHume">Justin Hume</a>
 ---
+
+### _Coming soon_

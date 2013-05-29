@@ -4,10 +4,10 @@ require 'sass-globbing'
 project_type = :stand_alone
 
 # Publishing paths
-http_path = "/readium-web-components/"
-http_images_path = "/readium-web-components/images"
-http_fonts_path = "/readium-web-components/fonts"
-css_dir = "public/readium-web-components/stylesheets"
+http_path = "/Readium-Web-Components/"
+http_images_path = "/Readium-Web-Components/images"
+http_fonts_path = "/Readium-Web-Components/fonts"
+css_dir = "public/Readium-Web-Components/stylesheets"
 
 # Local development paths
 sass_dir = "sass"
