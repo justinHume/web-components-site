@@ -7,7 +7,7 @@ categories:
 author: <a href="http://github.com/justinHume">Justin Hume</a>
 ---
 
-This post discusses Readium.js development priorities up to this point, as well as how you can get involved with the project. 
+This post discusses Readium.js development priorities up to now, as well as how you can get involved with the project. 
 
 ## Motivation
 
