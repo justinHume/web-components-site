@@ -144,6 +144,6 @@ In the case of the demo application, buttons that control next page, previous pa
 ## Next steps
 If you feel comfortable with SimpleReadium.js and the demo application, feel free to learn more about the [philosophy](/Readium-Web-Components/architecture/philosophy.html), [design](/Readium-Web-Components/architecture/design.html) or [codebase](http://github.com/readium/Readium-Web-Components). 
 
-The [API](/Readium-Web-Components/get-started/API.html) documentation will also help you get familiar with all that Readium.js has to offer.
+The [API](/Readium-Web-Components/get-started/api.html) documentation will also help you get familiar with all that Readium.js has to offer.
 
-Finally, if you're ready to start building, you can downlod [Readium.js](/Readium-Web-Components/get-started/download.html).
+Finally, if you're ready to start building, you can download [Readium.js](/Readium-Web-Components/get-started/download.html).
