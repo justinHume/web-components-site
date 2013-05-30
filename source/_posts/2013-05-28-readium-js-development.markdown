@@ -27,12 +27,12 @@ The original Readium project was successful due to the [involvement](https://git
 
 ## Development Priorities
 
-My boss will probably cringe when he reads this but, during the development of Readium.js, I prioritized the things engineers like: The API design, a reasonable standard of engineering and solid documentation.
+During the development of Readium.js, I prioritized the things engineers like: The API design, a reasonable standard of engineering and solid documentation.
 
 I felt it was important to get to a point where community members could reason about the design of the library and API, test the library, and get involved with the source code. I think getting the library 'right' will depend on early feeback and iteration.
 
 #### Someone get the polish...
-As a result of this priority, some EPUB 3 feature support was lost (cringing will not be held against you) in the design and refactoring. Getting these features back is in some cases just a matter of "turning" them back on. In some cases, it'll be a bit more work. However, I think Readium.js will be back up to feature-completeness pretty quickly. 
+As a result of this priority, some EPUB 3 feature support was lost in the design and refactoring. Getting these features back is in some cases just a matter of "turning" them back on. In some cases, it'll be a bit more work. However, I think Readium.js will be back up to feature-completeness pretty quickly. 
 
 ## How you can help
 
