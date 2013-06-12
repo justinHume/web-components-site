@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Get Readium.js"
-date: 2013-05-22 15:53
+date: 2013-06-11 15:00
 comments: true
 sharing: true
 footer: true

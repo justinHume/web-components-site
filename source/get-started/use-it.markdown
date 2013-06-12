@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Getting started with Readium.js"
-date: 2013-05-22 15:53
+date: 2013-06-12 14:00
 comments: true
 sharing: true
 footer: true
@@ -19,8 +19,10 @@ The easiest way to get familiar with Readium.js is to use [SimpleReadium.js](/Re
 
 The following demo application and SimpleReadium.js should help you get started using and understanding Readium.js.
 
-#### Instructions for setting up the demo
+### Instructions for using the demo
+There are three ways to try out the demo application:
 
+#### _Zip file_
 To use this demo, you need to have a web server. There are four steps to get set up: 
 
 * Download the SimpleReadium.js [demo application](/Readium-Web-Components/downloads/SimpleReadiumJsDemoApp.zip) (~9 MB)
@@ -28,7 +30,11 @@ To use this demo, you need to have a web server. There are four steps to get set
 * Start your server
 * Point your browser to url/to/demo/index.html
 
-A Github Pages -hosted version of this demo is available [here](http://readium.github.com/readium-viewer-demo1). The [source](http://github.com/justinHume/simple-epub-3) for the demo is also available.
+#### _Github source_
+The [source](http://github.com/readium/readium-viewer-demo1) for the demo is also available on Github, and instructions for using it are provided in the Readme.
+
+#### _Web version_
+A Github Pages -hosted version of this demo is available [here](http://readium.github.com/readium-viewer-demo1).
 
 <a id="simple-rwc-description"></a>
 ## Description of the demo application

@@ -381,3 +381,19 @@ task :list do
   puts "Tasks: #{(Rake::Task.tasks - [Rake::Task[:list]]).join(', ')}"
   puts "(type rake -T for more detail)\n\n"
 end
+
+# ---------------------------------------------------- 
+#  READIUM.JS WEBSITE TASKS
+# ----------------------------------------------------
+
+task :copy_dependencies do 
+
+    zippedReadiumJs = "https://raw.github.com/readium/Readium-Web-Components/master/epub-modules/release/Readium.js.zip"
+    zippedSimpleReadiumJs = "https://raw.github.com/readium/Readium-Web-Components/master/epub-modules/release/SimpleReadium.js.zip"
+    gzippedSimple = "https://raw.github.com/readium/Readium-Web-Components/master/epub-modules/release/SimpleReadium.min.js.gz"
+
+    `curl #{zippedReadiumJs} -o source/downloads/Readium.js.zip`
+    `curl #{zippedSimpleReadiumJs} -o source/downloads/SimpleReadium.js.zip`
+    `curl #{gzippedSimple} -o source/downloads/SimpleReadium.min.js.gz`
+    `zip -r source/downloads/SimpleReadiumJsDemoApp.zip ../simple-epub-3/*`
+end

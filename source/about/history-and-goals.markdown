@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "A history lesson in... Readium"
-date: 2013-05-19 18:58
+date: 2013-06-11 14:00
 comments: true
 sharing: true
 footer: true
@@ -26,7 +26,7 @@ Having satisfied the "demonstration" goals of the original project, it was appar
 Several organizations created custom variants of the original Readium Chrome Web Application that were completely web-served "cloud readers" rather than installed client-side browser extensions. This included an experimental implementation by [Evident Point](http://evidentpoint.com/) and a more production-focused implementation deployed by Benetech as the nucleus of a new browser-based reader for the [Benetech Bookshare](https://www.bookshare.org/) service. 
 
 ##### _Readium =%$&*@=> Readium.js!_
-This work led to a desire to redesign and refactor the Readium codebase into a set of light-weight components optimized for web-deployed EPUB files and purely browser-based reading. [Evident Point Software](http://evidentpoint.com/) took the first steps to refactor the original Readium codebased into the new [Readium.js](/) project, and other organizations including Benetech and DAISY have pledged to contribute to Readium.js in areas of their expertise, such as accessibility support including screen-reader integration. 
+This work led to a desire to rewrite the Readium codebase into a set of light-weight components optimized for web-deployed EPUB files and purely browser-based reading. [Evident Point Software](http://evidentpoint.com/) took the first steps to rewrite the original Readium codebased into the new [Readium.js](/) project, and other organizations including Benetech and DAISY have pledged to contribute to Readium.js in areas of their expertise, such as accessibility support including screen-reader integration. 
 
 ##### _Readium.js going forward_
 Readium.js consists of a set of [javascript modules](/Readium-Web-Components/get-started/download.html) that can be dropped into any new or existing web application, and can be composed to support a variety of different types of application. This includes the simple case of deploying EPUB files onto a basic static web server to be consumed in any modern (HTML5) browser. The Chrome Packaged App configuration will continue to be maintained, but the primary focus is now cross-browser implementations for reading server-based content.

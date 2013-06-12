@@ -28,6 +28,7 @@ _A module that wires together all of Readium.js into one object and exposes a re
 * [setSyntheticLayout](#simple-set-synthetic-layout)
 * [setMargin](#simple-set-margin)
 * [setTheme](#simple-set-theme)
+* [resizeContent](#simple-resize-content)
 
 *** 
 
@@ -86,6 +87,7 @@ _Manage the loading, rendering and interaction with EPUB 3.0 content._
 * [on](#reader-on)
 * [off](#reader-off)
 * [getViewerSettings](#reader-get-viewer-settings)
+* [resizeContent](#reader-resize-content)
 
 ***
 
@@ -115,6 +117,7 @@ _Paginates a reflowable EPUB [content document](http://www.idpf.org/epub/30/spec
 * [setSyntheticLayout](#reflowable-set-synthetic-layout)
 * [on](#reflowable-on)
 * [off](#reflowable-off)
+* [resizeContent](#reflowable-resize-content)
 
 ***
 
@@ -144,6 +147,7 @@ _Load and render a set of fixed layout pages, and provides an interface for them
 * [setSyntheticLayout](#fixed-set-synthetic-layout)
 * [on](#fixed-on)
 * [off](#fixed-off)
+* [resizeContent](#reflowable-resize-content)
 
 ***
 
@@ -342,6 +346,16 @@ Set SimpleReadium to display a synthetic layout (two pages), or a single-page la
 
 {% endcodeblock %}
 
+<a id="simple-resize-content"></a>
+#### resizeContent
+Resize EPUB content based on the current size of the HTML element container.
+
+{% codeblock .resizeContent() lang:javascript %}
+
+    // Resizes content based on the container's size
+    simpleReadium.resizeContent();
+
+{% endcodeblock %}
 
 <!-- ==========================================================================================================
         PARSER API DESCRIPTION
@@ -890,6 +904,17 @@ The reader must preserve viewer settings state internally; this method returns t
 
 {% endcodeblock %}
 
+<a id="reader-resize-content"></a>
+#### resizeContent
+Resize EPUB content based on the current size of the HTML element container.
+
+{% codeblock .resizeContent() lang:javascript %}
+
+    // Resizes content based on the container's size
+    epubReader.resizeContent();
+
+{% endcodeblock %}
+
 <!-- ==========================================================================================================
         REFLOWABLE PAGES VIEW API DESCRIPTION
      ========================================================================================================== -->
@@ -1143,6 +1168,17 @@ This method is delegating to the [backbone.js off(...)](http://backbonejs.org/#E
 {% codeblock .off(eventName) lang:javascript %}
 
     reflowablePages.off("epubLoaded");
+
+{% endcodeblock %}
+
+<a id="reflowable-resize-content"></a>
+#### resizeContent
+Resize EPUB content based on the current size of the HTML element container.
+
+{% codeblock .resizeContent() lang:javascript %}
+
+    // Resizes content based on the container's size
+    reflowablePages.resizeContent();
 
 {% endcodeblock %}
 
@@ -1421,6 +1457,16 @@ This method is delegating to the [backbone.js off(...)](http://backbonejs.org/#E
 
 {% endcodeblock %}
 
+<a id="fixed-resize-content"></a>
+#### resizeContent
+Resize EPUB content based on the current size of the HTML element container.
+
+{% codeblock .resizeContent() lang:javascript %}
+
+    // Resizes content based on the container's size
+    fixedPages.resizeContent();
+
+{% endcodeblock %}
 
 <!-- ==========================================================================================================
         EPUB CFI API DESCRIPTION
