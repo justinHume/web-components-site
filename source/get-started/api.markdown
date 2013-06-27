@@ -68,7 +68,14 @@ _Expose useful information about an EPUB and it's resources._
 _Manage the loading, rendering and interaction with EPUB 3.0 content._
 
 #### Events
-* [epubLoaded]("")
+* [epubLoaded](#reader-epub-loaded)
+* [atNextPage](#reader-at-next-page)
+* [atPreviousPage](#reader-at-previous-page)
+* [atFirstPage](#reader-at-first-page)
+* [atLastPage](#reader-at-last-page)
+* [epubLinkClicked](#reader-epub-link-clicked)
+* [layoutChanged](#reader-layout-changed)
+* [displayedContentChanged](#reader-displayed-content-changed)
 
 #### Methods
 * [EpubReaderModule](#reader-init)
@@ -96,6 +103,13 @@ _Paginates a reflowable EPUB [content document](http://www.idpf.org/epub/30/spec
 
 #### Events
 * [contentDocumentLoaded]()
+* [atNextPage](#reflowable-at-next-page)
+* [atPreviousPage](#reflowable-at-previous-page)
+* [atFirstPage](#reflowable-at-first-page)
+* [atLastPage](#reflowable-at-last-page)
+* [epubLinkClicked](#reflowable-epub-link-clicked)
+* [layoutChanged](#reflowable-layout-changed)
+* [displayedContentChanged](#reflowable-displayed-content-changed)
 
 #### Methods
 * [EpubReflowableModule](#reflowable-init)
@@ -125,7 +139,14 @@ _Paginates a reflowable EPUB [content document](http://www.idpf.org/epub/30/spec
 _Load and render a set of fixed layout pages, and provides an interface for them._
 
 #### Events
-* [contentDocumentLoaded]()
+* [contentDocumentLoaded](#fixed-content-document-loaded)
+* [atNextPage](#fixed-at-next-page)
+* [atPreviousPage](#fixed-at-previous-page)
+* [atFirstPage](#fixed-at-first-page)
+* [atLastPage](#fixed-at-last-page)
+* [epubLinkClicked](#fixed-epub-link-clicked)
+* [layoutChanged](#fixed-layout-changed)
+* [displayedContentChanged](#fixed-displayed-content-changed)
 
 #### Methods
 * [EpubFixedModule](#fixed-init)
@@ -645,6 +666,75 @@ var tocHref = theEpub.getToc();
 
 ## EPUB Reader API
 
+### Events
+
+<a id="reader-epub-loaded"></a>
+#### _epubLoaded_
+Fired when a _specified_ set EPUB resources have completed rendering.
+
+The specified set of resources depends on the rendering strategy. For example, if a lazy rendering strategy is used, the epubLoaded event will be triggered when a single page set has completed rendering. 
+
+{% codeblock .... lang:javascript %}
+{% endcodeblock %}
+
+* [atNextPage](#reader-at-next-page)
+
+<a id=""></a>
+#### 
+
+{% codeblock .... lang:javascript %}
+{% endcodeblock %}
+
+* [atPreviousPage](#reader-at-previous-page)
+
+<a id=""></a>
+#### 
+
+{% codeblock .... lang:javascript %}
+{% endcodeblock %}
+
+* [atFirstPage](#reader-at-first-page)
+
+<a id=""></a>
+#### 
+
+{% codeblock .... lang:javascript %}
+{% endcodeblock %}
+
+* [atLastPage](#reader-at-last-page)
+
+<a id=""></a>
+#### 
+
+{% codeblock .... lang:javascript %}
+{% endcodeblock %}
+
+* [epubLinkClicked](#reader-epub-link-clicked)
+
+<a id=""></a>
+#### 
+
+{% codeblock .... lang:javascript %}
+{% endcodeblock %}
+
+* [layoutChanged](#reader-layout-changed)
+
+<a id=""></a>
+#### 
+
+{% codeblock .... lang:javascript %}
+{% endcodeblock %}
+
+* [displayedContentChanged](#reader-displayed-content-changed)
+
+<a id=""></a>
+#### 
+
+{% codeblock .... lang:javascript %}
+{% endcodeblock %}
+
+### Methods
+
 <a id="reader-init"></a>
 #### EpubReaderModule
 Instantiate a new reader module. Use a constructor method invocation. 
@@ -653,8 +743,7 @@ The reader requires a DOM element to bind EPUB content to, the EPUB publication 
 
 This is a stateful module. State is the _DOM element to bind to_, the epub resources referenced by the _epub spine info_ object, and _viewer settings_. 
 
-
-------------- Write something in here about fixed size for the binding element
+The binding element must have a fixed sized set, at present. 
 
 {% codeblock new EpubReaderModule(readerBoundElement, epubSpineInfo, viewerSettings, packageDocumentDOM) lang:javascript %}
 
