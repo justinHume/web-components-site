@@ -1,0 +1,34 @@
+---
+layout: post
+title: "Readium.js Roadmap"
+date: 2013-06-27 14:46
+comments: true
+categories: 
+author: <a href="http://github.com/justinHume">Justin Hume</a>
+---
+
+Up until now, the priorities for Readium.js development have been 1) software architecture, 2) the structure of the API and 3) establishing a web-presence.
+
+<!--more-->
+
+#### Architecture
+Establish and test a software architecture that will support continued development, extensibility and, essentially, prevent the codebase from becoming a hot-mess for as long as possible.
+
+#### API structure
+Map out and deliver a "vision" for the Readium.js API, as soon as possible, so that feedback from potential users and adopters can be incorporated in the early stages of the project. I think getting an API right is hard, feedback is important, and it should be done as early as possible. 
+
+#### Web presence
+Establishing a web presence by setting up the Readium.js [website and blog](http://readium.github.io/Readium-Web-Components/), [API reference](http://readium.github.io/Readium-Web-Components/get-started/api.html), [Github documentation](https://github.com/readium/Readium-Web-Components#readme) and [getting started guides](http://readium.github.io/Readium-Web-Components/get-started/use-it.html).
+
+## Roadmap
+With the [recent additions](http://readium.github.io/Readium-Web-Components/blog/2013/06/27/changes-to-the-api/) to Readium.js, a respectable (??) architecture and API structure have been established. While feedback on that (hopefully) rolls in, work will begin in the following areas: 
+
+## EPUB 3 spec conformance
+Relative to the original [Readium](https://chrome.google.com/webstore/detail/empty-title/fepbnnnkkadjhjahcafoaglimekefifl?hl=en) project, one of the things that fell by the wayside while focusing on the priorities above was full(ish) EPUB 3 conformance, especially for some of the advanced parts of the spec. 
+
+Re-integrating much of this conformance is a matter of testing for and fixing bugs that were introduced in the refactor and rewrite. A big push will be made over the next few weeks to bring Readium.js up to the level of EPUB 3 compliance provided by the original Readium project.
+
+## Improving the demo application
+The [application](http://readium.github.io/readium-viewer-demo1/) that demonstrates Readium.js is a bit rough, and only demonstrates a subset of the features available in the library. This application will be improved, both in its structure and design. 
+
+As always, feel free to email me (justinh@evidentpoint.com) if you have any kind of feedback. 

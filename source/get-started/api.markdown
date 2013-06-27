@@ -16,19 +16,44 @@ A list - and example of use - is provided for the custom styles, events and meth
 ### [SimpleReadium](#simple-api)
 _A module that wires together all of Readium.js into one object and exposes a reduced, simplified, API._
 
+#### [Events](#simple-events-example)
+* [epubLoaded](#simple-epub-loaded)
+* [atNextPage](#simple-at-next-page)
+* [atPreviousPage](#simple-at-previous-page)
+* [atFirstPage](#simple-at-first-page)
+* [atLastPage](#simple-at-last-page)
+* [epubLinkClicked](#simple-epub-link-clicked)
+* [layoutChanged](#simple-layout-changed)
+* [displayedContentChanged](#simple-displayed-content-changed)
+
+#### [Customizable styles](#simple-custom-styles-example)
+* [epub-border](#simple-epub-border)
+* [spine-divider](#simple-spine-divider)
+* [page-border](#simple-page-border)
+* [margin](#simple-margin)
+* [fontSize](#simple-font-size)
+* [reflowable-epub-border](#simple-reflowable-epub-border)
+* [reflowable-spine-divider](#simple-reflowable-spine-divider)
+* [reflowable-page-border](#simple-reflowable-page-border)
+* [reflowable-page-theme](#simple-reflowable-page-theme)
+* [fixed-epub-border](#simple-epub-border)
+* [fixed-spine-divider](#simple-spine-divider)
+* [fixed-page-border](#simple-page-border)
+* [fixed-page-border-left](#simple-page-border-left)
+* [fixed-page-border-right](#simple-page-border-right)
+
+#### Methods
 * [SimpleRWC](#simple-init)
 * [showSpineItem](#simple-show-spine-item)
 * [showPageByCFI](#simple-show-page-by-cfi)
 * [showPageByElementId](#simple-show-page-by-element-id)
 * [previousPage](#simple-previous-page)
 * [nextPage](#simple-next-page)
-* [setFontSize](#simple-set-font-size)
-* [setMargin](#simple-set-margin)
-* [setTheme](#simple-set-theme)
 * [setSyntheticLayout](#simple-set-synthetic-layout)
 * [setMargin](#simple-set-margin)
 * [setTheme](#simple-set-theme)
 * [resizeContent](#simple-resize-content)
+* [customize](#simple-customize)
 
 *** 
 
@@ -67,7 +92,7 @@ _Expose useful information about an EPUB and it's resources._
 ### [EPUB-Reader](#reader-api)
 _Manage the loading, rendering and interaction with EPUB 3.0 content._
 
-#### Events
+#### [Events](#reader-events-example)
 * [epubLoaded](#reader-epub-loaded)
 * [atNextPage](#reader-at-next-page)
 * [atPreviousPage](#reader-at-previous-page)
@@ -77,6 +102,22 @@ _Manage the loading, rendering and interaction with EPUB 3.0 content._
 * [layoutChanged](#reader-layout-changed)
 * [displayedContentChanged](#reader-displayed-content-changed)
 
+#### [Customizable styles](#reader-custom-styles-example)
+* [epub-border](#reader-epub-border)
+* [spine-divider](#reader-spine-divider)
+* [page-border](#reader-page-border)
+* [margin](#reader-margin)
+* [fontSize](#reader-font-size)
+* [reflowable-epub-border](#reader-epub-border)
+* [reflowable-spine-divider](#reader-spine-divider)
+* [reflowable-page-border](#reader-page-border)
+* [reflowable-page-theme](#reader-page-theme)
+* [fixed-epub-border](#reader-epub-border)
+* [fixed-spine-divider](#reader-spine-border)
+* [fixed-page-border](#reader-page-border)
+* [fixed-page-border-left](#reader-page-border-left)
+* [fixed-page-border-right](#reader-page-border-right)
+
 #### Methods
 * [EpubReaderModule](#reader-init)
 * [render](#reader-render)
@@ -85,9 +126,6 @@ _Manage the loading, rendering and interaction with EPUB 3.0 content._
 * [showPageByElementId](#reader-show-page-by-element-id)
 * [nextPage](#reader-next-page)
 * [previousPage](#reader-previous-page)
-* [setFontSize](#reader-set-font-size)
-* [setMargin](#reader-set-margin)
-* [setTheme](#reader-set-theme)
 * [setSyntheticLayout](#reader-set-synthetic-layout)
 * [getNumberOfPages](#reader-get-number-of-pages)
 * [getCurrentPage](#reader-get-current-page)
@@ -95,14 +133,15 @@ _Manage the loading, rendering and interaction with EPUB 3.0 content._
 * [off](#reader-off)
 * [getViewerSettings](#reader-get-viewer-settings)
 * [resizeContent](#reader-resize-content)
+* [customize](#reader-customize)
 
 ***
 
 ### [EPUB-Reflowable](#reflowable-api)
 _Paginates a reflowable EPUB [content document](http://www.idpf.org/epub/30/spec/epub30-contentdocs.html#sec-overview) and provides an interface._
 
-#### Events
-* [contentDocumentLoaded]()
+#### [Events](#reflowable-events-example)
+* [epubLoaded](#reflowable-epub-loaded)
 * [atNextPage](#reflowable-at-next-page)
 * [atPreviousPage](#reflowable-at-previous-page)
 * [atFirstPage](#reflowable-at-first-page)
@@ -110,6 +149,17 @@ _Paginates a reflowable EPUB [content document](http://www.idpf.org/epub/30/spec
 * [epubLinkClicked](#reflowable-epub-link-clicked)
 * [layoutChanged](#reflowable-layout-changed)
 * [displayedContentChanged](#reflowable-displayed-content-changed)
+
+#### [Customizable styles](#reflowable-custom-styles-example)
+* [epub-border](#reflowable-epub-border)
+* [spine-divider](#reflowable-spine-divider)
+* [page-border](#reflowable-page-border)
+* [margin](#reflowable-margin)
+* [fontSize](#reflowable-font-size)
+* [reflowable-epub-border](#reflowable-reflowable-epub-border)
+* [reflowable-spine-divider](#reflowable-reflowable-spine-divider)
+* [reflowable-page-border](#reflowable-reflowable-page-border)
+* [reflowable-page-theme](#reflowable-reflowable-page-theme)
 
 #### Methods
 * [EpubReflowableModule](#reflowable-init)
@@ -125,21 +175,19 @@ _Paginates a reflowable EPUB [content document](http://www.idpf.org/epub/30/spec
 * [hidePagesView](#reflowable-hide-pages-view)
 * [numberOfPages](#reflowable-number-of-pages)
 * [currentPage](#reflowable-current-page)
-* [setFontSize](#reflowable-set-font-size)
-* [setMargin](#reflowable-set-margin)
-* [setTheme](#reflowable-set-theme)
 * [setSyntheticLayout](#reflowable-set-synthetic-layout)
 * [on](#reflowable-on)
 * [off](#reflowable-off)
 * [resizeContent](#reflowable-resize-content)
+* [customize](#reflowable-customize)
 
 ***
 
 ### [EPUB-Fixed](#fixed-api)
-_Load and render a set of fixed layout pages, and provides an interface for them._
+_Loads and renders a set of fixed layout pages, and provides an interface for them._
 
-#### Events
-* [contentDocumentLoaded](#fixed-content-document-loaded)
+#### [Events](#fixed-events-example)
+* [epubLoaded](#fixed-epub-loaded)
 * [atNextPage](#fixed-at-next-page)
 * [atPreviousPage](#fixed-at-previous-page)
 * [atFirstPage](#fixed-at-first-page)
@@ -147,6 +195,16 @@ _Load and render a set of fixed layout pages, and provides an interface for them
 * [epubLinkClicked](#fixed-epub-link-clicked)
 * [layoutChanged](#fixed-layout-changed)
 * [displayedContentChanged](#fixed-displayed-content-changed)
+
+#### [Customizable styles](#fixed-custom-styles-example)
+* [epub-border](#fixed-epub-border)
+* [spine-divider](#fixed-spine-divider)
+* [page-border](#fixed-page-border)
+* [fixed-epub-border](#fixed-fixed-epub-border)
+* [fixed-spine-divider](#fixed-fixed-spine-divider)
+* [fixed-page-border](#fixed-fixed-page-border)
+* [fixed-page-border-left](#fixed-fixed-page-border-left)
+* [fixed-page-border-right](#fixed-fixed-page-border-right)
 
 #### Methods
 * [EpubFixedModule](#fixed-init)
@@ -162,13 +220,11 @@ _Load and render a set of fixed layout pages, and provides an interface for them
 * [hidePagesView](#fixed-hide-pages-view)
 * [numberOfPages](#fixed-number-of-pages)
 * [currentPage](#fixed-current-page)
-* [setFontSize](#fixed-set-font-size)
-* [setMargin](#fixed-set-margin)
-* [setTheme](#fixed-set-theme)
 * [setSyntheticLayout](#fixed-set-synthetic-layout)
 * [on](#fixed-on)
 * [off](#fixed-off)
-* [resizeContent](#reflowable-resize-content)
+* [resizeContent](#fixed-resize-content)
+* [customize](#fixed-customize)
 
 ***
 
@@ -201,6 +257,182 @@ _De-reference and generate Canonical Fragement Identifiers (CFIs)._
 
 <a id="simple-api"></a>
 ## SimpleReadium.js
+
+<a id="simple-events-example"></a>
+### Events
+
+Handlers for each of the events triggered by SimpleReadium can set, as follows:
+
+{% codeblock .on() lang:javascript %}
+    simpleReadium.on("eventName", function () {
+        console.log("Something is done when: eventName is triggered");
+    }, this);
+{% endcodeblock %}
+
+Refer to the [on](#reader-on) API documentation for the method definition. 
+
+<a id="simple-epub-loaded"></a>
+#### epubLoaded
+A _specified_ set of EPUB resources have completed rendering.
+
+The specified set of resources depends on the rendering strategy. For example, if a lazy rendering strategy is used the epubLoaded event will be triggered when a single content document has completed rendering. 
+
+<a id="simple-at-next-page"></a>
+#### atNextPage
+The reader has rendered the next page in the reading order. 
+
+<a id="simple-at-previous-page"></a>
+#### atPreviousPage
+The reader has rendered the previous page in the reading order.
+
+<a id="simple-at-first-page"></a>
+#### atFirstPage
+The reader has reached the first page in the EPUB publication.
+
+<a id="simple-at-last-page"></a>
+#### atLastPage
+The reader has reached the last page in the EPUB publication.
+
+<a id="simple-epub-link-clicked"></a>
+#### epubLinkClicked
+A link _within_ a content document has been clicked.
+
+<a id="simple-layout-changed"></a>
+#### layoutChanged
+The layout has been changed from single-page to a two-page spread, or vice-versa.
+
+<a id="simple-displayed-content-changed"></a>
+#### displayedContentChanged
+The displayed content has changed, for any reason. This event will be triggered on page changes, 
+repagination, resizing, etc. 
+
+<a id="simple-custom-styles-example"></a>
+### Customizable styles
+
+Custom styles can be set as follows:
+
+{% codeblock .customize() lang:javascript %}
+    // Setting a default custom style provided with the library
+    simpleReadium.customize("customStyleName", "box-shadow");
+
+    // Setting a default custom style with CSS
+    simpleReadium.customize("customStyleName", {
+        "border-style" : "solid",
+        "border-color" : "red"
+    });
+
+    // Styles can also be chained
+    simpleReadium
+        .customize("spine-divider", "box-shadow")
+        .customize("fixed-page-border-left", "box-shadow")
+        .customize("fixed-page-border-right", "box-shadow");
+{% endcodeblock %}
+
+Refer to the API documentation of [customize](#simple-customize) for the method definition.
+
+<a id="simple-epub-border"></a>
+#### epub-border
+A border that bounds the visible pages, for both fixed and reflowable content documents.
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="simple-spine-divider"></a>
+#### spine-divider
+The spine divider shown in a two-page spread, for both fixed and reflowable content documents.
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="simple-page-border"></a>
+#### page-border
+The border of each visible page, for both fixed and reflowable content documents. This should not be used in conjunction with the "epub-border."
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="simple-margin"></a>
+#### margin
+The margin from the edge of the embedded reading container to the beginning of text. For reflowable content documents only, at the moment.
+
+This custom style takes the place of the setMargin() method, so at present it only accepts integers in string format: "1", "2"..etc.
+
+_Defaults_:
+"1", ..., "5"
+
+<a id="simple-font-size"></a>
+#### fontSize
+Sets the font size for reflowable content documents only. 
+
+This custom style takes the place of the setFontSize() method, so at present it only accepts integers in string format: "1", "2"..etc.
+
+_Defaults_:
+"1", ..., "20"
+
+<a id="simple-reflowable-epub-border"></a>
+#### reflowable-epub-border
+A border that bounds visible pages in a reflowable content document.
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="simple-reflowable-spine-divider"></a>
+#### reflowable-spine-divider
+A spine divider shown in a two-page spread in a reflowable content document.
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="simple-reflowable-page-border"></a>
+#### reflowable-page-border
+The border of each visible page, for reflowable content documents. This should not be used in conjunction with the "epub-border."
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="simple-reflowable-page-theme"></a>
+#### reflowable-page-theme
+This custom style replaces the setTheme() method, and is used to provide a "theme" for reflowable content documents. Essentially, this can be any styling of the content document itself.
+
+_Defaults_:
+"night", "vancouver", "none"
+
+<a id="simple-epub-border"></a>
+#### fixed-epub-border 
+A border that bounds visible pages for fixed content.
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="simple-spine-divider"></a>
+#### fixed-spine-divider
+A spine divider shown in a two-page spread for fixed content.
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="simple-page-border"></a>
+#### fixed-page-border
+The border of each visible page, for fixed content documents. This should not be used in conjunction with the "epub-border."
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="simple-page-border-left"></a>
+#### fixed-page-border-left
+The border of each visible page that has a page-spread property value of "left," for fixed content. This should not be used in conjunction with the "epub-border."
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="simple-page-border-right"></a>
+#### fixed-page-border-right
+The border of each visible page that has a page-spread property value of "right," for fixed content. This should not be used in conjunction with the "epub-border."
+
+_Defaults_:
+"box-shadow", "none"
+
+### Methods
 
 <a id="simple-init"></a>
 #### SimpleRWC
@@ -318,41 +550,6 @@ A callback must be supplied, as the previous set of content may not have been lo
 
 {% endcodeblock %}
 
-<a id="simple-set-font-size"></a>
-#### setFontSize
-Set the font size for text.
-
-{% codeblock .setFontSize(fontSize) lang:javascript %}
-
-    fontSize = 12; // integer; 1-indexed
-    simpleReadium.setFontSize(fontSize);
-
-{% endcodeblock %}
-
-<a id="simple-set-margin"></a>
-#### setMargin
-Set the margin for each page. 
-
-{% codeblock .setMargin(margin) lang:javascript %}
-
-    var margin = 4; // integer; zero-indexed
-    simpleReadium.setMargin(margin);
-
-{% endcodeblock %}
-
-<a id="simple-set-theme"></a>
-#### setTheme
-Set the theme for the XHTML [content document](http://www.idpf.org/epub/30/spec/epub30-contentdocs.html#sec-overview). 
-
-_EXPECTED API CHANGE_: The way themes are set will likely be changed to give developers more flexibility over which elements are styled.
-
-{% codeblock .setTheme(theme) lang:javascript %}
-
-    var themeName = "default"; // "default", "vancouver-theme", "desert-theme"
-    simpleReadium.setTheme(themeName);
-
-{% endcodeblock %}
-
 <a id="simple-set-synthetic-layout"></a>
 #### setSyntheticLayout
 Set SimpleReadium to display a synthetic layout (two pages), or a single-page layout. 
@@ -376,6 +573,31 @@ Resize EPUB content based on the current size of the HTML element container.
     // Resizes content based on the container's size
     simpleReadium.resizeContent();
 
+{% endcodeblock %}
+
+<a id="simple-customize"></a>
+#### customize
+
+Set custom styles provided by Readium.js
+
+{% codeblock .customize(customStyleName, defaultOrCSSObject) lang:javascript %}
+    // Setting a default custom style provided with the library
+    var styleName = "epub-border"; // string: one of the custom styles provided by Readium.js
+    var defaultOrCSSObject = "box-shadow"; //string: one of the defaults provided by Readium.js for the custom style
+    simpleReadium.customize(styleName, defaultOrCSSObject);
+
+    // Setting a default custom style with CSS
+    var defaultOrCSSObject = {      // object: a string CSS property name, followed by a string CSS property value
+        "border-style" : "solid",
+        "border-color" : "red"
+    }
+    simpleReadium.customize(styleName, defaultOrCSSObject);
+
+    // Styles can also be chained
+    simpleReadium
+        .customize("spine-divider", "box-shadow")
+        .customize("fixed-page-border-left", "box-shadow")
+        .customize("fixed-page-border-right", "box-shadow");
 {% endcodeblock %}
 
 <!-- ==========================================================================================================
@@ -658,80 +880,186 @@ var tocHref = theEpub.getToc();
 
 {% endcodeblock %}
 
-<a id="reader-api"></a>
-
 <!-- ==========================================================================================================
         READER API DESCRIPTION
      ========================================================================================================== -->
 
+<a id="reader-api"></a>
 ## EPUB Reader API
 
+<a id="reader-events-example"></a>
 ### Events
 
+Handlers for each of the events triggered by the reader can set, as follows:
+
+{% codeblock .on() lang:javascript %}
+    theEpub.on("eventName", function () {
+        console.log("Something is done when: eventName is triggered");
+    }, this);
+{% endcodeblock %}
+
+Refer to the [on](#reader-on) API documentation for the method definition. 
+
 <a id="reader-epub-loaded"></a>
-#### _epubLoaded_
-Fired when a _specified_ set EPUB resources have completed rendering.
+#### epubLoaded
+A _specified_ set of EPUB resources have completed rendering.
 
-The specified set of resources depends on the rendering strategy. For example, if a lazy rendering strategy is used, the epubLoaded event will be triggered when a single page set has completed rendering. 
+The specified set of resources depends on the rendering strategy. For example, if a lazy rendering strategy is used the epubLoaded event will be triggered when a single content document has completed rendering. 
 
-{% codeblock .... lang:javascript %}
+<a id="reader-at-next-page"></a>
+#### atNextPage
+The reader has rendered the next page in the reading order. 
+
+<a id="reader-at-previous-page"></a>
+#### atPreviousPage
+The reader has rendered the previous page in the reading order.
+
+<a id="reader-at-first-page"></a>
+#### atFirstPage
+The reader has reached the first page in the EPUB publication.
+
+<a id="reader-at-last-page"></a>
+#### atLastPage
+The reader has reached the last page in the EPUB publication.
+
+<a id="reader-epub-link-clicked"></a>
+#### epubLinkClicked
+A link _within_ a content document has been clicked.
+
+<a id="reader-layout-changed"></a>
+#### layoutChanged
+The layout has been changed from single-page to a two-page spread, or vice-versa.
+
+<a id="reader-displayed-content-changed"></a>
+#### displayedContentChanged
+The displayed content has changed, for any reason. This event will be triggered on page changes, 
+repagination, resizing, etc. 
+
+<a id="reader-custom-styles-example"></a>
+### Customizable styles
+
+Custom styles can be set as follows:
+
+{% codeblock .customize() lang:javascript %}
+    // Setting a default custom style provided with the library
+    theEpub.customize("customStyleName", "box-shadow");
+
+    // Setting a default custom style with CSS
+    theEpub.customize("customStyleName", {
+        "border-style" : "solid",
+        "border-color" : "red"
+    });
+
+    // Styles can also be chained
+    theEpub
+        .customize("spine-divider", "box-shadow")
+        .customize("fixed-page-border-left", "box-shadow")
+        .customize("fixed-page-border-right", "box-shadow");
 {% endcodeblock %}
 
-* [atNextPage](#reader-at-next-page)
+Refer to the API documentation of [customize](#reader-customize) for the method definition.
 
-<a id=""></a>
-#### 
+<a id="reader-epub-border"></a>
+#### epub-border
+A border that bounds the visible pages, for both fixed and reflowable content documents.
 
-{% codeblock .... lang:javascript %}
-{% endcodeblock %}
+_Defaults_:
+"box-shadow", "none"
 
-* [atPreviousPage](#reader-at-previous-page)
+<a id="reader-spine-divider"></a>
+#### spine-divider
+The spine divider shown in a two-page spread, for both fixed and reflowable content documents.
 
-<a id=""></a>
-#### 
+_Defaults_:
+"box-shadow", "none"
 
-{% codeblock .... lang:javascript %}
-{% endcodeblock %}
+<a id="reader-page-border"></a>
+#### page-border
+The border of each visible page, for both fixed and reflowable content documents. This should not be used in conjunction with the "epub-border."
 
-* [atFirstPage](#reader-at-first-page)
+_Defaults_:
+"box-shadow", "none"
 
-<a id=""></a>
-#### 
+<a id="reader-margin"></a>
+#### margin
+The margin from the edge of the embedded reading container to the beginning of text. For reflowable content documents only, at the moment.
 
-{% codeblock .... lang:javascript %}
-{% endcodeblock %}
+This custom style takes the place of the setMargin() method, so at present it only accepts integers in string format: "1", "2"..etc.
 
-* [atLastPage](#reader-at-last-page)
+_Defaults_:
+"1", ..., "5"
 
-<a id=""></a>
-#### 
+<a id="reader-font-size"></a>
+#### fontSize
+Sets the font size for reflowable content documents only. 
 
-{% codeblock .... lang:javascript %}
-{% endcodeblock %}
+This custom style takes the place of the setFontSize() method, so at present it only accepts integers in string format: "1", "2"..etc.
 
-* [epubLinkClicked](#reader-epub-link-clicked)
+_Defaults_:
+"1", ..., "20"
 
-<a id=""></a>
-#### 
+<a id="reader-reflowable-epub-border"></a>
+#### reflowable-epub-border
+A border that bounds visible pages in a reflowable content document.
 
-{% codeblock .... lang:javascript %}
-{% endcodeblock %}
+_Defaults_:
+"box-shadow", "none"
 
-* [layoutChanged](#reader-layout-changed)
+<a id="reader-reflowable-spine-divider"></a>
+#### reflowable-spine-divider
+A spine divider shown in a two-page spread in a reflowable content document.
 
-<a id=""></a>
-#### 
+_Defaults_:
+"box-shadow", "none"
 
-{% codeblock .... lang:javascript %}
-{% endcodeblock %}
+<a id="reader-reflowable-page-border"></a>
+#### reflowable-page-border
+The border of each visible page, for reflowable content documents. This should not be used in conjunction with the "epub-border."
 
-* [displayedContentChanged](#reader-displayed-content-changed)
+_Defaults_:
+"box-shadow", "none"
 
-<a id=""></a>
-#### 
+<a id="reader-reflowable-page-theme"></a>
+#### reflowable-page-theme
+This custom style replaces the setTheme() method, and is used to provide a "theme" for reflowable content documents. Essentially, this can be any styling of the content document itself.
 
-{% codeblock .... lang:javascript %}
-{% endcodeblock %}
+_Defaults_:
+"night", "vancouver", "none"
+
+<a id="reader-epub-border"></a>
+#### fixed-epub-border 
+A border that bounds visible pages for fixed content.
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="reader-spine-divider"></a>
+#### fixed-spine-divider
+A spine divider shown in a two-page spread for fixed content.
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="reader-page-border"></a>
+#### fixed-page-border
+The border of each visible page, for fixed content documents. This should not be used in conjunction with the "epub-border."
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="reader-page-border-left"></a>
+#### fixed-page-border-left
+The border of each visible page that has a page-spread property value of "left," for fixed content. This should not be used in conjunction with the "epub-border."
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="reader-page-border-right"></a>
+#### fixed-page-border-right
+The border of each visible page that has a page-spread property value of "right," for fixed content. This should not be used in conjunction with the "epub-border."
+
+_Defaults_:
+"box-shadow", "none"
 
 ### Methods
 
@@ -873,41 +1201,6 @@ A callback must be supplied, as the previous set of content may not have been lo
 
 {% endcodeblock %}
 
-<a id="reader-set-font-size"></a>
-#### setFontSize
-Set the font size for text.
-
-{% codeblock .setFontSize(fontSize) lang:javascript %}
-
-    fontSize = 12; // integer; 1-indexed
-    epubReader.setFontSize(fontSize);
-
-{% endcodeblock %}
-
-<a id="reader-set-margin"></a>
-#### setMargin
-Set the margin for each page. 
-
-{% codeblock .setMargin(margin) lang:javascript %}
-
-    var margin = 4; // integer; zero-indexed
-    epubReader.setMargin(margin);
-
-{% endcodeblock %}
-
-<a id="reader-set-theme"></a>
-#### setTheme
-Set the theme for the XHTML [content document](http://www.idpf.org/epub/30/spec/epub30-contentdocs.html#sec-overview). 
-
-_EXPECTED API CHANGE_: The way themes are set will likely be changed to give developers more flexibility over which elements are styled. 
-
-{% codeblock .setTheme(theme) lang:javascript %}
-
-    var themeName = "default"; // "default", "vancouver-theme", "desert-theme"
-    epubReader.setTheme(themeName);
-
-{% endcodeblock %}
-
 <a id="reader-set-synthetic-layout"></a>
 #### setSyntheticLayout
 Set the reader to display a synthetic layout (two pages), or a single-page layout. 
@@ -1004,12 +1297,178 @@ Resize EPUB content based on the current size of the HTML element container.
 
 {% endcodeblock %}
 
+<a id="reader-customize"></a>
+#### customize
+
+Set custom styles provided by Readium.js
+
+{% codeblock .customize(customStyleName, defaultOrCSSObject) lang:javascript %}
+    // Setting a default custom style provided with the library
+    var styleName = "epub-border"; // string: one of the custom styles provided by Readium.js
+    var defaultOrCSSObject = "box-shadow"; //string: one of the defaults provided by Readium.js for the custom style
+    epubReader.customize(styleName, defaultOrCSSObject);
+
+    // Setting a default custom style with CSS
+    var defaultOrCSSObject = {      // object: a string CSS property name, followed by a string CSS property value
+        "border-style" : "solid",
+        "border-color" : "red"
+    }
+    epubReader.customize(styleName, defaultOrCSSObject);
+
+    // Styles can also be chained
+    epubReader
+        .customize("spine-divider", "box-shadow")
+        .customize("fixed-page-border-left", "box-shadow")
+        .customize("fixed-page-border-right", "box-shadow");
+{% endcodeblock %}
+
 <!-- ==========================================================================================================
-        REFLOWABLE PAGES VIEW API DESCRIPTION
+        REFLOWABLE PAGE SET API DESCRIPTION
      ========================================================================================================== -->
 
 <a id="reflowable-api"></a>
-## Reflowable Pages View
+## Reflowable Page Set
+
+<a id="reflowable-events-example"></a>
+### Events
+
+Handlers for each of the events triggered by a reflowable page set can set, as follows:
+
+{% codeblock .on() lang:javascript %}
+    reflowablePages.on("eventName", function () {
+        console.log("Something is done when: eventName is triggered");
+    }, this);
+{% endcodeblock %}
+
+Refer to the [on](#reader-on) API documentation for the method definition. 
+
+<a id="reflowable-epub-loaded"></a>
+#### epubLoaded
+A _specified_ set of EPUB resources have completed rendering.
+
+The specified set of resources depends on the rendering strategy. For example, if a lazy rendering strategy is used the epubLoaded event will be triggered when a single content document has completed rendering. 
+
+<a id="reflowable-at-next-page"></a>
+#### atNextPage
+The reader has rendered the next page in the reading order. 
+
+<a id="reflowable-at-previous-page"></a>
+#### atPreviousPage
+The reader has rendered the previous page in the reading order.
+
+<a id="reflowable-at-first-page"></a>
+#### atFirstPage
+The reader has reached the first page in the EPUB publication.
+
+<a id="reflowable-at-last-page"></a>
+#### atLastPage
+The reader has reached the last page in the EPUB publication.
+
+<a id="reflowable-epub-link-clicked"></a>
+#### epubLinkClicked
+A link _within_ a content document has been clicked.
+
+<a id="reflowable-layout-changed"></a>
+#### layoutChanged
+The layout has been changed from single-page to a two-page spread, or vice-versa.
+
+<a id="reflowable-displayed-content-changed"></a>
+#### displayedContentChanged
+The displayed content has changed, for any reason. This event will be triggered on page changes, 
+repagination, resizing, etc. 
+
+<a id="reflowable-custom-styles-example"></a>
+### Customizable styles
+
+Custom styles can be set as follows:
+
+{% codeblock .customize() lang:javascript %}
+    // Setting a default custom style provided with the library
+    reflowablePages.customize("customStyleName", "box-shadow");
+
+    // Setting a default custom style with CSS
+    reflowablePages.customize("customStyleName", {
+        "border-style" : "solid",
+        "border-color" : "red"
+    });
+
+    // Styles can also be chained
+    reflowablePages
+        .customize("spine-divider", "box-shadow")
+        .customize("fixed-page-border-left", "box-shadow")
+        .customize("fixed-page-border-right", "box-shadow");
+{% endcodeblock %}
+
+Refer to the API documentation of [customize](#reflowable-customize) for the method definition.
+
+<a id="reflowable-epub-border"></a>
+#### epub-border
+A border that bounds the visible pages.
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="reflowable-spine-divider"></a>
+#### spine-divider
+The spine divider shown in a two-page spread.
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="reflowable-page-border"></a>
+#### page-border
+The border of each visible page. This should not be used in conjunction with the "epub-border."
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="reflowable-margin"></a>
+#### margin
+The margin from the edge of the embedded reading container to the beginning of text.
+
+This custom style takes the place of the setMargin() method, so at present it only accepts integers in string format: "1", "2"..etc.
+
+_Defaults_:
+"1", ..., "5"
+
+<a id="reflowable-font-size"></a>
+#### fontSize
+Sets the font size. 
+
+This custom style takes the place of the setFontSize() method, so at present it only accepts integers in string format: "1", "2"..etc.
+
+_Defaults_:
+"1", ..., "20"
+
+<a id="reflowable-reflowable-epub-border"></a>
+#### reflowable-epub-border
+A border that bounds visible pages in a reflowable content document.
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="reflowable-reflowable-spine-divider"></a>
+#### reflowable-spine-divider
+A spine divider shown in a two-page spread in a reflowable content document.
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="reflowable-reflowable-page-border"></a>
+#### reflowable-page-border
+The border of each visible page, for reflowable content documents. This should not be used in conjunction with the "epub-border."
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="reflowable-reflowable-page-theme"></a>
+#### reflowable-page-theme
+This custom style replaces the setTheme() method, and is used to provide a "theme" for reflowable content documents. Essentially, this can be any styling of the content document itself.
+
+_Defaults_:
+"night", "vancouver", "none"
+
+### Methods
 
 <a id="reflowable-init"></a>
 #### EpubReflowableModule
@@ -1184,41 +1643,6 @@ Get the current page.
 
 {% endcodeblock %}
 
-<a id="reflowable-set-font-size"></a>
-#### setFontSize
-Set the font size for text.
-
-{% codeblock .setFontSize(fontSize) lang:javascript %}
-
-    fontSize = 12; // integer; 1-indexed
-    reflowablePages.setFontSize(fontSize);
-
-{% endcodeblock %}
-
-<a id="reflowable-set-margin"></a>
-#### setMargin
-Set the margin for each page. 
-
-{% codeblock .setMargin(margin) lang:javascript %}
-
-    var margin = 4; // integer; zero-indexed
-    reflowablePages.setMargin(margin);
-
-{% endcodeblock %}
-
-<a id="reflowable-set-theme"></a>
-#### setTheme
-Set the theme for the XHTML [content document](http://www.idpf.org/epub/30/spec/epub30-contentdocs.html#sec-overview). 
-
-_EXPECTED API CHANGE_: The way themes are set will likely be changed to give developers more flexibility over which elements are styled.
-
-{% codeblock .setTheme(theme) lang:javascript %}
-
-    var themeName = "default"; // "default", "vancouver-theme", "desert-theme"
-    reflowablePages.setTheme(themeName);
-
-{% endcodeblock %}
-
 <a id="reflowable-set-synthetic-layout"></a>
 #### setSyntheticLayout
 Set a synthetic layout (two pages), or a single-page layout. 
@@ -1271,12 +1695,167 @@ Resize EPUB content based on the current size of the HTML element container.
 
 {% endcodeblock %}
 
+<a id="reflowable-customize"></a>
+#### customize
+
+Set custom styles provided by Readium.js
+
+{% codeblock .customize(customStyleName, defaultOrCSSObject) lang:javascript %}
+    // Setting a default custom style provided with the library
+    var styleName = "epub-border"; // string: one of the custom styles provided by Readium.js
+    var defaultOrCSSObject = "box-shadow"; //string: one of the defaults provided by Readium.js for the custom style
+    reflowablePages.customize(styleName, defaultOrCSSObject);
+
+    // Setting a default custom style with CSS
+    var defaultOrCSSObject = {      // object: a string CSS property name, followed by a string CSS property value
+        "border-style" : "solid",
+        "border-color" : "red"
+    }
+    reflowablePages.customize(styleName, defaultOrCSSObject);
+
+    // Styles can also be chained
+    reflowablePages
+        .customize("spine-divider", "box-shadow")
+        .customize("fixed-page-border-left", "box-shadow")
+        .customize("fixed-page-border-right", "box-shadow");
+{% endcodeblock %}
+
 <!-- ==========================================================================================================
-        FIXED PAGES VIEW API DESCRIPTION
+        FIXED PAGE SET API DESCRIPTION
      ========================================================================================================== -->
 
 <a id="fixed-api"></a>
-## Fixed Pages View
+## Fixed Page Set
+
+<a id="fixed-events-example"></a>
+### Events
+
+Handlers for each of the events triggered by a fixed page set can set, as follows:
+
+{% codeblock .on() lang:javascript %}
+    fixedPages.on("eventName", function () {
+        console.log("Something is done when: eventName is triggered");
+    }, this);
+{% endcodeblock %}
+
+Refer to the [on](#reader-on) API documentation for the method definition. 
+
+<a id="fixed-epub-loaded"></a>
+#### epubLoaded
+A _specified_ set of EPUB resources have completed rendering.
+
+The specified set of resources depends on the rendering strategy. For example, if a lazy rendering strategy is used the epubLoaded event will be triggered when a single content document has completed rendering. 
+
+<a id="fixed-at-next-page"></a>
+#### atNextPage
+The reader has rendered the next page in the reading order. 
+
+<a id="fixed-at-previous-page"></a>
+#### atPreviousPage
+The reader has rendered the previous page in the reading order.
+
+<a id="fixed-at-first-page"></a>
+#### atFirstPage
+The reader has reached the first page in the EPUB publication.
+
+<a id="fixed-at-last-page"></a>
+#### atLastPage
+The reader has reached the last page in the EPUB publication.
+
+<a id="fixed-epub-link-clicked"></a>
+#### epubLinkClicked
+A link _within_ a content document has been clicked.
+
+<a id="fixed-layout-changed"></a>
+#### layoutChanged
+The layout has been changed from single-page to a two-page spread, or vice-versa.
+
+<a id="fixed-displayed-content-changed"></a>
+#### displayedContentChanged
+The displayed content has changed, for any reason. This event will be triggered on page changes, 
+repagination, resizing, etc. 
+
+<a id="fixed-custom-styles-example"></a>
+### Customizable styles
+
+Custom styles can be set as follows:
+
+{% codeblock .customize() lang:javascript %}
+    // Setting a default custom style provided with the library
+    fixedPages.customize("customStyleName", "box-shadow");
+
+    // Setting a default custom style with CSS
+    fixedPages.customize("customStyleName", {
+        "border-style" : "solid",
+        "border-color" : "red"
+    });
+
+    // Styles can also be chained
+    fixedPages
+        .customize("spine-divider", "box-shadow")
+        .customize("fixed-page-border-left", "box-shadow")
+        .customize("fixed-page-border-right", "box-shadow");
+{% endcodeblock %}
+
+Refer to the API documentation of [customize](#fixed-customize) for the method definition.
+
+<a id="fixed-epub-border"></a>
+#### epub-border
+A border that bounds the visible pages.
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="fixed-spine-divider"></a>
+#### spine-divider
+The spine divider shown in a two-page spread.
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="fixed-page-border"></a>
+#### page-border
+The border of each visible page. This should not be used in conjunction with the "epub-border."
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="fixed-epub-border"></a>
+#### fixed-epub-border 
+A border that bounds visible pages for fixed content.
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="fixed-spine-divider"></a>
+#### fixed-spine-divider
+A spine divider shown in a two-page spread for fixed content.
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="fixed-page-border"></a>
+#### fixed-page-border
+The border of each visible page, for fixed content documents. This should not be used in conjunction with the "epub-border."
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="fixed-page-border-left"></a>
+#### fixed-page-border-left
+The border of each visible page that has a page-spread property value of "left," for fixed content. This should not be used in conjunction with the "epub-border."
+
+_Defaults_:
+"box-shadow", "none"
+
+<a id="fixed-page-border-right"></a>
+#### fixed-page-border-right
+The border of each visible page that has a page-spread property value of "right," for fixed content. This should not be used in conjunction with the "epub-border."
+
+_Defaults_:
+"box-shadow", "none"
+
+### Methods
 
 <a id="fixed-init"></a>
 #### EpubFixedModule
@@ -1470,41 +2049,6 @@ Get the current page.
 
 {% endcodeblock %}
 
-<a id="fixed-set-font-size"></a>
-#### setFontSize
-Set the font size for text.
-
-{% codeblock .setFontSize(fontSize) lang:javascript %}
-
-    fontSize = 12; // integer; 1-indexed
-    fixedPages.setFontSize(fontSize);
-
-{% endcodeblock %}
-
-<a id="fixed-set-margin"></a>
-#### setMargin
-Set the margin for each page. 
-
-{% codeblock .setMargin(margin) lang:javascript %}
-
-    var margin = 4; // integer; zero-indexed
-    fixedPages.setMargin(margin);
-
-{% endcodeblock %}
-
-<a id="fixed-set-theme"></a>
-#### setTheme
-Set the theme for the XHTML [content document](http://www.idpf.org/epub/30/spec/epub30-contentdocs.html#sec-overview). 
-
-_EXPECTED API CHANGE_: The way themes are set will likely be changed to give developers more flexibility over which elements are styled.
-
-{% codeblock .setTheme(theme) lang:javascript %}
-
-    var themeName = "default"; // "default", "vancouver-theme", "desert-theme"
-    fixedPages.setTheme(themeName);
-
-{% endcodeblock %}
-
 <a id="fixed-set-synthetic-layout"></a>
 #### setSyntheticLayout
 Set a synthetic layout (two pages), or a single-page layout. 
@@ -1555,6 +2099,31 @@ Resize EPUB content based on the current size of the HTML element container.
     // Resizes content based on the container's size
     fixedPages.resizeContent();
 
+{% endcodeblock %}
+
+<a id="fixed-customize"></a>
+#### customize
+
+Set custom styles provided by Readium.js
+
+{% codeblock .customize(customStyleName, defaultOrCSSObject) lang:javascript %}
+    // Setting a default custom style provided with the library
+    var styleName = "epub-border"; // string: one of the custom styles provided by Readium.js
+    var defaultOrCSSObject = "box-shadow"; //string: one of the defaults provided by Readium.js for the custom style
+    fixedPages.customize(styleName, defaultOrCSSObject);
+
+    // Setting a default custom style with CSS
+    var defaultOrCSSObject = {      // object: a string CSS property name, followed by a string CSS property value
+        "border-style" : "solid",
+        "border-color" : "red"
+    }
+    fixedPages.customize(styleName, defaultOrCSSObject);
+
+    // Styles can also be chained
+    fixedPages
+        .customize("spine-divider", "box-shadow")
+        .customize("fixed-page-border-left", "box-shadow")
+        .customize("fixed-page-border-right", "box-shadow");
 {% endcodeblock %}
 
 <!-- ==========================================================================================================
